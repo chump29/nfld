@@ -32,6 +32,7 @@ export default function Selector() {
   return (
     <Form>
       <Form.Group className="mb-3">
+        <Form.Label>NFL Teams</Form.Label>
         <Form.Select
           onChange={handleChange}
           value={teamSelected}
