@@ -1,0 +1,23 @@
+services:
+  frontend:
+    build:
+      no_cache: true
+      context: ./frontend
+    ports:
+      - 88:80
+    container_name: frontend
+    restart: unless-stopped
+    volumes:
+      - ./frontend:/frontend
+    depends_on:
+      - backend
+  backend:
+    build:
+      no_cache: true
+      context: ./backend
+    expose:
+      - 5000:5000
+    container_name: backend
+    restart: unless-stopped
+    volumes:
+      - ./backend:/backend
