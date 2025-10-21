@@ -43,14 +43,14 @@ export default function Selector() {
     <>
       <Form>
         <Form.Group className="mb-3">
-          <Form.Label>NFL Teams</Form.Label>
+          <Form.Label>NFL Team</Form.Label>
           <Form.Select
             onChange={handleChange}
             value={teamSelected}
             size="lg"
             id="sTeams">
             <option className="firstOption" value="">
-              Choose a team
+              Choose a team...
             </option>
             {teamsList.map((data) => (
               <option
