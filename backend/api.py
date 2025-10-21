@@ -4,18 +4,19 @@
 API Service
 """
 
-from requests import get, RequestException
+from requests import RequestException
+from requests_cache import CachedSession
 
 from flask import Flask
 
 api = Flask(__name__)
 
-# TODO: implement caching
+session = CachedSession("nfld", expire_after=43200, allowable_codes=[200], allowable_methods=["GET"]) # 12hrs
 
 def get_url(url):
     """ Get URL """
     try:
-        response = get(url, timeout=10)
+        response = session.get(url, timeout=10)
         response.raise_for_status()
         return response.json()
     except RequestException as e:
