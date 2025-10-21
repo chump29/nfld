@@ -10,6 +10,8 @@ from flask import Flask
 
 api = Flask(__name__)
 
+# TODO: implement caching
+
 def get_url(url):
     """ Get URL """
     try:
@@ -23,28 +25,16 @@ def get_url(url):
         print(f"Error: {e}")
         return None
 
-"""
-@api.route("/<team>")
+@api.route("/api/schedule/<team>") # TODO: Nginx handles /api
 def get_schedule(team: str):
-    try:
-        resp = None
-        team_data = get_by_abbr(team)
-        if team_data:
-            team_abbr = team_data["abbr"]
-            if team_abbr:
-                response = get(
-                    url=f"https://site.web.api.espn.com/apis/site/v2/sports/football/nfl/teams/{team_abbr}/schedule?region=us&lang=en&season=2025&seasontype=1", # pylint: disable=line-too-long
-                    timeout=10
-                )
-                response.raise_for_status()
-                resp = response.json()
-        return resp
-    except exceptions.RequestException as e:
-        print(f"Request error: {e}")
-        return None
-"""
+    """ Returns team schedule """
+    schedule = {}
+    response = get_url(f"https://site.web.api.espn.com/apis/site/v2/sports/football/nfl/teams/{team}/schedule?region=us&lang=en&season=2025&seasontype=2") # pylint: disable=line-too-long
+    if response:
+        schedule = response["events"]
+    return schedule
 
-@api.route("/api/teams")
+@api.route("/api/teams") # TODO: Nginx handles /api
 def get_teams():
     """ Returns all teams """
     response = get_url("https://site.web.api.espn.com/apis/site/v2/sports/football/nfl/teams")
