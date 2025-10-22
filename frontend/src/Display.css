@@ -1,0 +1,19 @@
+.card-subtitle, .card {
+    margin-bottom: 10px;
+}
+
+.card-body {
+    padding: 8px;
+}
+
+#score {
+    padding-top: 4rem;
+}
+
+.bg {
+    border-radius: 5px;
+}
+
+.row-list {
+    margin: 0;
+}

@@ -1,6 +1,7 @@
-import axios, { AxiosError, type AxiosResponse } from 'axios'
 import { useEffect, useState } from 'react'
 import Form from 'react-bootstrap/Form'
+
+import axios, { AxiosError, type AxiosResponse } from 'axios'
 
 import Display from './Display.tsx'
 
@@ -10,12 +11,19 @@ interface ITeam {
   id: string
   abbreviation: string
   displayName: string
+  logo: string
+  color: string
+  alternateColor: string
+  logos: any // NOTE: makes TS happy, flattening
 }
 
 export default function Selector() {
-  const [teamsList, setTeamsList] = useState([] as ITeam[])
+  const [teamList, setTeamList] = useState([] as ITeam[])
   const [teamSelected, setTeamSelected] = useState<string>('')
   const [isVisible, setIsVisible] = useState(false)
+  const [logo, setLogo] = useState<string>("")
+  const [color, setColor] = useState<string>("")
+  const [alternateColor, setAlternateColor] = useState<string>("")
 
   const api_url = 'http://localhost:5000/api/teams' // TODO: http://backend/api/teams
 
@@ -40,8 +48,11 @@ export default function Selector() {
             abbreviation: d.team.abbreviation,
             displayName: d.team.displayName
           } as ITeam)
+          setLogo(d.team.logos[3].href)
+          setColor(d.team.color)
+          setAlternateColor(d.team.alternateColor)
         })
-        setTeamsList(teams)
+        setTeamList(teams)
       })
       .catch((error: AxiosError) => {
         console.error(error.message)
@@ -56,12 +67,12 @@ export default function Selector() {
     <>
       <Form>
         <Form.Group className="mb-3">
-          <Form.Label>NFL Team</Form.Label>
+          <Form.Label className='fs-5 fw-bold'>NFL Team</Form.Label>
           <Form.Select onChange={handleChange} value={teamSelected} size="lg">
             <option className="firstOption" value="">
               Choose a team...
             </option>
-            {teamsList.map((data) => (
+            {teamList.map((data: ITeam) => (
               <option key={data.id} value={data.abbreviation}>
                 {data.displayName}
               </option>
@@ -69,7 +80,7 @@ export default function Selector() {
           </Form.Select>
         </Form.Group>
       </Form>
-      {isVisible ? <Display /> : null}
+      {isVisible ? <Display team={teamSelected} logo={logo} color={color} alternateColor={alternateColor} /> : null}
     </>
   )
 }
