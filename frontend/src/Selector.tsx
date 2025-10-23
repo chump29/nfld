@@ -11,9 +11,6 @@ export interface ITeam {
   id: string
   abbreviation: string
   displayName: string
-  logo: string
-  color: string
-  alternateColor: string
 }
 
 export default function Selector() {
@@ -31,6 +28,8 @@ export default function Selector() {
     } else {
       setIsVisible(false)
     }
+
+    e.target.blur()
   }
 
   const getTeams = async () => {

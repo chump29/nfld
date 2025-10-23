@@ -63,7 +63,9 @@ export default function Display({ teamSelected }: { teamSelected: string }) {
             week: d.week.text,
             teams: teams,
             venue: competitions.venue.fullName,
-            status: competitions.status.type.description
+            status: competitions.status.type.shortDetail.includes('Final')
+              ? competitions.status.type.shortDetail
+              : competitions.status.type.description
           } as ISchedule)
           setSeason(d.season.displayName)
         })
@@ -76,7 +78,7 @@ export default function Display({ teamSelected }: { teamSelected: string }) {
 
   useEffect(() => {
     getSchedule()
-  }, [])
+  })
 
   return (
     <div className="container">

@@ -8,4 +8,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 EXPOSE 5000
 
-CMD ["gunicorn", "wsgi:api", "-b", "0.0.0.0:5000", "-w", "4"]
+CMD ["gunicorn", "wsgi:api", "-b", "0.0.0.0:5000", "-w", "2"]
