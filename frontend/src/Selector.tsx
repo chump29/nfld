@@ -32,8 +32,8 @@ export default function Selector() {
     e.target.blur()
   }
 
-  const getTeams = async () => {
-    await axios
+  useEffect(() => {
+    axios
       .get(api_url)
       .then((response: AxiosResponse) => {
         const teams: ITeam[] = []
@@ -50,10 +50,6 @@ export default function Selector() {
       .catch((error: AxiosError) => {
         console.error(error.message)
       })
-  }
-
-  useEffect(() => {
-    getTeams()
   }, [])
 
   return (

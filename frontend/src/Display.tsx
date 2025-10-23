@@ -33,8 +33,8 @@ export default function Display({ teamSelected }: { teamSelected: string }) {
 
   const api_url = 'http://localhost:5000/api/schedule/' // TODO: http://backend/api/schedule/
 
-  const getSchedule = async () => {
-    await axios
+  useEffect(() => {
+    axios
       .get(api_url + teamSelected)
       .then((response: AxiosResponse) => {
         const schedule: ISchedule[] = []
@@ -74,11 +74,7 @@ export default function Display({ teamSelected }: { teamSelected: string }) {
       .catch((error: AxiosError) => {
         console.error(error.message)
       })
-  }
-
-  useEffect(() => {
-    getSchedule()
-  })
+  }, [teamSelected])
 
   return (
     <div className="container">
