@@ -11,7 +11,8 @@ from flask import Flask
 
 api = Flask(__name__)
 
-session = CachedSession("nfld", expire_after=43200, allowable_codes=[200], allowable_methods=["GET"]) # 12hrs
+# pylint: disable=line-too-long
+session = CachedSession("nfld", expire_after=86400, allowable_codes=[200], allowable_methods=["GET"])
 
 def get_url(url):
     """ Get URL """
@@ -26,6 +27,7 @@ def get_url(url):
         print(f"Error: {e}")
         return None
 
+# pylint: disable=fixme
 @api.route("/api/schedule/<team>") # TODO: Nginx handles /api
 def get_schedule(team: str):
     """ Returns team schedule """
@@ -35,6 +37,7 @@ def get_schedule(team: str):
         schedule = response["events"]
     return schedule
 
+# pylint: disable=fixme
 @api.route("/api/teams") # TODO: Nginx handles /api
 def get_teams():
     """ Returns all teams """

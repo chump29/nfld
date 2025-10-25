@@ -10,6 +10,7 @@ interface ISchedule {
   teams: ITeam[]
   venue: string
   status: string
+  id: string
 }
 
 interface ITeam {
@@ -65,7 +66,8 @@ export default function Display({ teamSelected }: { teamSelected: string }) {
             venue: competitions.venue.fullName,
             status: competitions.status.type.shortDetail.includes('Final')
               ? competitions.status.type.shortDetail
-              : competitions.status.type.description
+              : competitions.status.type.description,
+            id: d.id
           } as ISchedule)
           setSeason(d.season.displayName)
         })
@@ -83,7 +85,7 @@ export default function Display({ teamSelected }: { teamSelected: string }) {
           <h3 className="card-title fw-bold">Game Schedule</h3>
           <h6 className="card-subtitle text-muted"> &nbsp; {season} Season</h6>
           {schedule.map((data: ISchedule) => (
-            <div className="card">
+            <div className="card" key={data.id}>
               <div className="card-body">
                 <div className="row row-list">
                   <div className="col text-center">
