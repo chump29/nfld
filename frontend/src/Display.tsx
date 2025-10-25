@@ -31,7 +31,7 @@ export default function Display({ teamSelected }: { teamSelected: string }) {
   const [schedule, setSchedule] = useState([] as ISchedule[])
   const [season, setSeason] = useState<string>('N/A')
 
-  const api_url = 'http://localhost:5000/api/schedule/' // TODO: http://backend/api/schedule/
+  const api_url = import.meta.env.VITE_SCHEDULE_URL
 
   useEffect(() => {
     axios
@@ -74,7 +74,7 @@ export default function Display({ teamSelected }: { teamSelected: string }) {
       .catch((error: AxiosError) => {
         console.error(error.message)
       })
-  }, [teamSelected])
+  }, [teamSelected, api_url])
 
   return (
     <div className="container">

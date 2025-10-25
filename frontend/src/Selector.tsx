@@ -18,7 +18,7 @@ export default function Selector() {
   const [teamSelected, setTeamSelected] = useState<string>('')
   const [isVisible, setIsVisible] = useState(false)
 
-  const api_url = 'http://localhost:5000/api/teams' // TODO: http://backend/api/teams
+  const api_url = import.meta.env.VITE_TEAMS_URL
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setTeamSelected(e.target.value)
@@ -50,7 +50,7 @@ export default function Selector() {
       .catch((error: AxiosError) => {
         console.error(error.message)
       })
-  }, [])
+  }, [api_url])
 
   return (
     <>
