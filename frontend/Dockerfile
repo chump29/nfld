@@ -1,14 +1,33 @@
-FROM nginx:stable-alpine
+#!/usr/bin/env -S docker build . --tag=nfld-frontend --no-cache --file
+
+FROM node:22-alpine AS base
+
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+
+RUN corepack enable pnpm && corepack install -g pnpm@latest-10
+
+# -=-
+
+FROM base AS dependencies
+
+WORKDIR /dependencies
+
+COPY pnpm-lock.yaml .
+RUN --mount=type=cache,target=/pnpm/store pnpm fetch --frozen-lockfile
+COPY package.json .
+RUN --mount=type=cache,target=/pnpm/store pnpm install --frozen-lockfile --prod --offline
+
+# -=-
+
+FROM nginx:alpine AS frontend
 
 WORKDIR /frontend
 
-RUN apk add npm
+COPY --from=dependencies /dependencies .
+COPY dist .
 
-COPY package*.json /frontend/
-RUN npm ci --omit=dev
-
-COPY dist /usr/share/nginx/html
-COPY nginx.conf /etc/nginx/conf.d/nfld.conf
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
 

@@ -1,0 +1,11 @@
+.prettier*
+eslint.config.js
+tsconfig.*
+vite.config.ts
+src
+public
+node_modules
+.dockerignore
+build.sh
+.env.*
+*.d.ts

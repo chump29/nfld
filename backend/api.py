@@ -5,14 +5,13 @@ API Service
 """
 
 from requests import RequestException
-from requests_cache import CachedSession
 
-from flask import Flask
+from flask import abort, Flask
+from requests_cache import CachedSession
 
 api = Flask(__name__)
 
-# pylint: disable=line-too-long
-session = CachedSession("nfld", expire_after=86400, allowable_codes=[200], allowable_methods=["GET"])
+session = CachedSession("nfld", expire_after=86400, allowable_codes=[200], allowable_methods=["GET"]) # pylint: disable=line-too-long
 
 def get_url(url):
     """ Get URL """
@@ -27,8 +26,7 @@ def get_url(url):
         print(f"Error: {e}")
         return None
 
-# pylint: disable=fixme
-@api.route("/api/schedule/<team>") # TODO: Nginx handles /api
+@api.route("/schedule/<team>")
 def get_schedule(team: str):
     """ Returns team schedule """
     schedule = {}
@@ -37,8 +35,7 @@ def get_schedule(team: str):
         schedule = response["events"]
     return schedule
 
-# pylint: disable=fixme
-@api.route("/api/teams") # TODO: Nginx handles /api
+@api.route("/teams")
 def get_teams():
     """ Returns all teams """
     response = get_url("https://site.web.api.espn.com/apis/site/v2/sports/football/nfl/teams")
@@ -47,5 +44,10 @@ def get_teams():
         teams = response["sports"][0]["leagues"][0]["teams"]
     return teams
 
+@api.route("/")
+def not_found():
+    """ Invalid path """
+    abort(404)
+
 if __name__ == "__main__":
-    api.run(host="0.0.0.0", port=5000)
+    api.run(host="0.0.0.0", port=5555)

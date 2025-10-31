@@ -32,7 +32,7 @@ export default function Display({ teamSelected }: { teamSelected: string }) {
   const [schedule, setSchedule] = useState([] as ISchedule[])
   const [season, setSeason] = useState<string>('N/A')
 
-  const api_url = import.meta.env.VITE_SCHEDULE_URL
+  const api_url = import.meta.env.VITE_API_SCHEDULE_URL
 
   useEffect(() => {
     axios

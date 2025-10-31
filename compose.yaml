@@ -1,23 +1,20 @@
 services:
   frontend:
-    build:
-      no_cache: true
-      context: ./frontend
+    image: nfld-frontend
     ports:
       - 88:80
-    container_name: frontend
+    container_name: nfld-frontend
     restart: unless-stopped
     volumes:
       - ./frontend:/frontend
     depends_on:
       - backend
   backend:
-    build:
-      no_cache: true
-      context: ./backend
+    image: nfld-backend
     expose:
-      - 5000:5000
-    container_name: backend
+      - 5555:5555
+    container_name: nfld-backend
     restart: unless-stopped
     volumes:
       - ./backend:/backend
+    network_mode: host

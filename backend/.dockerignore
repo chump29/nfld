@@ -1,0 +1,5 @@
+lint.sh
+__pycache__
+nfld.sqlite
+build.sh
+.dockerignore

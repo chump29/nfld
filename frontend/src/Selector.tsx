@@ -18,7 +18,7 @@ export default function Selector() {
   const [teamSelected, setTeamSelected] = useState<string>('')
   const [isVisible, setIsVisible] = useState(false)
 
-  const api_url = import.meta.env.VITE_TEAMS_URL
+  const api_url = import.meta.env.VITE_API_TEAMS_URL
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setTeamSelected(e.target.value)
