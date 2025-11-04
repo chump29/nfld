@@ -5,8 +5,14 @@ import Dashboard from './Dashboard.tsx'
 
 import './main.css'
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
+if (import.meta.env.DEV) {
+  createRoot(document.getElementById('root')!).render(
     <Dashboard />
-  </StrictMode>
-)
+  )
+} else {
+  createRoot(document.getElementById('root')!).render(
+    <StrictMode>
+      <Dashboard />
+    </StrictMode>
+  )
+}

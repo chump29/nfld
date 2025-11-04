@@ -2,9 +2,12 @@ import { useEffect, useState } from 'react'
 
 import axios, { AxiosError, type AxiosResponse } from 'axios'
 
+import Bye from './Bye.tsx'
+import Week from './Week.tsx'
+
 import './Display.css'
 
-interface ISchedule {
+export interface ISchedule {
   date: string
   week: string
   teams: ITeam[]
@@ -39,8 +42,19 @@ export default function Display({ teamSelected }: { teamSelected: string }) {
       .get(api_url + teamSelected)
       .then((response: AxiosResponse) => {
         const schedule: ISchedule[] = []
+        let week = 0
         /* eslint-disable  @typescript-eslint/no-explicit-any */
         response.data.forEach((d: any) => {
+          if (++week != d.week.number) {
+            schedule.push({
+              date: '',
+              week: `Week ${week++}`,
+              teams: [],
+              venue: '',
+              status: '',
+              id: `${d.id}.1`
+            })
+          }
           const teams = [] as ITeam[]
           /* eslint-disable  @typescript-eslint/no-explicit-any */
           d.competitions[0].competitors.forEach((c: any) => {
@@ -55,12 +69,16 @@ export default function Display({ teamSelected }: { teamSelected: string }) {
           const month = date.toLocaleString('en-US', { month: 'long' })
           const day = date.getDate()
           const time = date.toLocaleTimeString('en-US', {
-            hour: '2-digit',
+            hour: 'numeric',
             minute: '2-digit'
           })
+          const tz =
+            Intl.DateTimeFormat(undefined, { timeZoneName: 'short' })
+              .formatToParts(date)
+              .find((part) => part.type == 'timeZoneName')?.value ?? ''
           const competitions = d.competitions[0]
           schedule.push({
-            date: `${month} ${day}${getOrdinal(day)} @ ${time}`,
+            date: `${month} ${day}${getOrdinal(day)} @ ${time} ${tz}`,
             week: d.week.text,
             teams: teams,
             venue: competitions.venue.fullName,
@@ -88,30 +106,7 @@ export default function Display({ teamSelected }: { teamSelected: string }) {
             <div className="card" key={data.id}>
               <div className="card-body">
                 <div className="row row-list">
-                  <div className="col text-center">
-                    <img src={data.teams[0].logo} width={75} />
-                    <p className="fw-bold">{data.teams[0].name}</p>
-                  </div>
-                  <div className="row row-list col-6">
-                    <div className="col text-start">
-                      <sup>{data.teams[0].record}</sup>
-                    </div>
-                    <div className="col text-center">
-                      <br />
-                      <span className="h2 fw-bold">
-                        {data.teams[0].score} - {data.teams[1].score}
-                      </span>
-                      <br />
-                      <span className="small">{data.status}</span>
-                    </div>
-                    <div className="col text-end">
-                      <sup>{data.teams[1].record}</sup>
-                    </div>
-                  </div>
-                  <div className="col text-center">
-                    <img src={data.teams[1].logo} width={75} />
-                    <p className="fw-bold">{data.teams[1].name}</p>
-                  </div>
+                  {!data.teams.length ? <Bye /> : <Week data={data} />}
                 </div>
                 <div className="row row-list">
                   <div className="col text-start ms-10 small">{data.week}</div>

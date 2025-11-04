@@ -29,6 +29,8 @@ COPY dist .
 
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
+RUN rm -rf /docker-entrypoint.d
+
 EXPOSE 80
 
 CMD ["nginx", "-g", "daemon off;"]
