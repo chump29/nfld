@@ -6,10 +6,13 @@ WORKDIR /backend
 
 ENV PYTHONUNBUFFERED=1
 
-RUN pip install --upgrade pip
-COPY *.py requirements.txt /backend/
-RUN pip install --no-cache-dir -r requirements.txt
-RUN rm requirements.txt
+RUN pip install --upgrade --no-cache-dir pip pip-tools
+COPY *.py pyproject.toml /backend/
+RUN pip-compile
+RUN pip-sync
+RUN pip uninstall pip-tools -y
+RUN pip cache purge
+RUN rm requirements.txt pyproject.toml
 
 EXPOSE 5555
 
