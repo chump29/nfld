@@ -3,3 +3,5 @@ __pycache__
 nfld.sqlite
 build.sh
 .dockerignore
+README.md
+pyproject.toml

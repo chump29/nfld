@@ -8,6 +8,9 @@ clear
 
 echo -e "${RED}=> BACKEND <=${EOL}\n"
 
+echo -e "${GREEN}=> Linting API...${EOL}\n"
+./lint.sh
+
 echo -e "${GREEN}=> Creating image...${EOL}\n"
 ./Dockerfile
 
