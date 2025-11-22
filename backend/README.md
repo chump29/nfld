@@ -44,14 +44,6 @@ pip-compile --extra dev # includes optional dev dependencies
 pip install [package]
 ```
 
-### To upgrade dependency:
-
-```bash
-pip-compile --upgrade # all dependencies
-# or
-pip-compile --upgrade-package [package]
-```
-
 ### To uninstall dependency:
 
 ```bash
@@ -62,6 +54,14 @@ pip-autoremove [package] -y
 
 ```bash
 pip-review
+```
+
+### To upgrade dependency:
+
+```bash
+pip-compile --upgrade # all dependencies
+# or
+pip-compile --upgrade-package [package]
 ```
 
 ### To sync dependencies:
