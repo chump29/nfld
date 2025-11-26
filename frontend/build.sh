@@ -3,19 +3,24 @@
 EOL="\e[0m"
 GREEN="\e[1;32m"
 RED="\e[1;4;31m"
+YELLOW="\e[1;33m"
 
 clear
 
 echo -e "${RED}=> FRONTEND <=${EOL}\n"
 
-echo -e "${GREEN}=> Building...${EOL}"
-pnpm run prod
+echo -e "${GREEN}=> Installing dependencies...${EOL}\n"
+pnpm install
+
+echo -e "\n${GREEN}=> Linting...${EOL}"
+pnpm run lint
 
 echo -e "\n${GREEN}=> Creating image...${EOL}\n"
 ./Dockerfile
 
-echo -e "\n${GREEN}=> Done!${EOL}\n"
+echo -e "\n${YELLOW}=> Done!${EOL}\n"
 
 unset EOL
 unset GREEN
 unset RED
+unset YELLOW

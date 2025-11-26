@@ -6,9 +6,7 @@ import Dashboard from './Dashboard.tsx'
 import './main.css'
 
 if (import.meta.env.DEV) {
-  createRoot(document.getElementById('root')!).render(
-    <Dashboard />
-  )
+  createRoot(document.getElementById('root')!).render(<Dashboard />)
 } else {
   createRoot(document.getElementById('root')!).render(
     <StrictMode>

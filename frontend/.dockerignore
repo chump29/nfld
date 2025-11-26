@@ -1,11 +1,7 @@
 .prettier*
-eslint.config.js
-tsconfig.*
-vite.config.ts
-src
-public
+eslint.config.ts
 node_modules
 .dockerignore
 build.sh
-.env.*
-*.d.ts
+dist
+README.md

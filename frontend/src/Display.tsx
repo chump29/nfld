@@ -23,6 +23,16 @@ interface ITeam {
   logo: string
 }
 
+const days = [
+  'Sunday',
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday',
+  'Saturday'
+]
+
 const getOrdinal = (number: number) => {
   return number > 0
     ? ['th', 'st', 'nd', 'rd'][
@@ -31,21 +41,21 @@ const getOrdinal = (number: number) => {
     : ''
 }
 
+const api_url = import.meta.env.VITE_API_URL
+
 export default function Display({ teamSelected }: { teamSelected: string }) {
   const [schedule, setSchedule] = useState([] as ISchedule[])
   const [season, setSeason] = useState<string>('N/A')
 
-  const api_url = import.meta.env.VITE_API_SCHEDULE_URL
-
   useEffect(() => {
     axios
-      .get(api_url + teamSelected)
+      .get(api_url + '/schedule/' + teamSelected)
       .then((response: AxiosResponse) => {
         const schedule: ISchedule[] = []
         let week = 0
         /* eslint-disable  @typescript-eslint/no-explicit-any */
         response.data.forEach((d: any) => {
-          if (++week != d.week.number) {
+          if (++week !== d.week.number) {
             schedule.push({
               date: '',
               week: `Week ${week++}`,
@@ -66,6 +76,7 @@ export default function Display({ teamSelected }: { teamSelected: string }) {
             })
           })
           const date = new Date(d.date)
+          const dow = days[date.getDay()]
           const month = date.toLocaleString('en-US', { month: 'long' })
           const day = date.getDate()
           const time = date.toLocaleTimeString('en-US', {
@@ -75,13 +86,17 @@ export default function Display({ teamSelected }: { teamSelected: string }) {
           const tz =
             Intl.DateTimeFormat(undefined, { timeZoneName: 'short' })
               .formatToParts(date)
-              .find((part) => part.type == 'timeZoneName')?.value ?? ''
+              .find((part) => part.type === 'timeZoneName')?.value ?? ''
           const competitions = d.competitions[0]
           schedule.push({
-            date: `${month} ${day}${getOrdinal(day)} @ ${time} ${tz}`,
+            date: `${dow}, ${month} ${day}${getOrdinal(day)} @ ${time} ${tz}`,
             week: d.week.text,
             teams: teams,
-            venue: competitions.venue.fullName,
+            venue:
+              competitions.venue.fullName +
+              (competitions.notes.length > 0
+                ? ' - ' + competitions.notes[0].headline
+                : ''),
             status: competitions.status.type.shortDetail.includes('Final')
               ? competitions.status.type.shortDetail
               : competitions.status.type.description,

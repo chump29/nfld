@@ -1,1 +1,4 @@
 **/*.html
+dist
+*.md
+pnpm*

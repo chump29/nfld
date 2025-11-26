@@ -4,7 +4,11 @@ export default function Week({ data }: { data: ISchedule }) {
   return (
     <>
       <div className="col text-center">
-        <img src={data.teams[0].logo} width={75} />
+        <img
+          src={data.teams[0].logo}
+          width={75}
+          alt={data.teams[0].name + ' logo'}
+        />
         <p className="fw-bold">{data.teams[0].name}</p>
       </div>
       <div className="row row-list col-6">
@@ -24,7 +28,11 @@ export default function Week({ data }: { data: ISchedule }) {
         </div>
       </div>
       <div className="col text-center">
-        <img src={data.teams[1].logo} width={75} />
+        <img
+          src={data.teams[1].logo}
+          width={75}
+          alt={data.teams[1].name + ' logo'}
+        />
         <p className="fw-bold">{data.teams[1].name}</p>
       </div>
     </>

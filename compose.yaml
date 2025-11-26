@@ -1,15 +1,13 @@
 services:
-  frontend:
+  nfld-frontend:
     image: nfld-frontend
-    ports:
-      - 88:80
     container_name: nfld-frontend
     restart: unless-stopped
+    ports:
+      - 88:80
     depends_on:
-      - backend
-  backend:
+      - nfld-backend
+  nfld-backend:
     image: nfld-backend
-    expose:
-      - 5555:5555
     container_name: nfld-backend
     restart: unless-stopped

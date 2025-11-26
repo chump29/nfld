@@ -13,12 +13,12 @@ export interface ITeam {
   displayName: string
 }
 
+const api_url = import.meta.env.VITE_API_URL
+
 export default function Selector() {
   const [teamList, setTeamList] = useState([] as ITeam[])
   const [teamSelected, setTeamSelected] = useState<string>('')
   const [isVisible, setIsVisible] = useState(false)
-
-  const api_url = import.meta.env.VITE_API_TEAMS_URL
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setTeamSelected(e.target.value)
@@ -34,7 +34,7 @@ export default function Selector() {
 
   useEffect(() => {
     axios
-      .get(api_url)
+      .get(api_url + '/teams')
       .then((response: AxiosResponse) => {
         const teams: ITeam[] = []
         /* eslint-disable  @typescript-eslint/no-explicit-any */
