@@ -18,7 +18,7 @@ pip-compile --extra dev --strip-extras --quiet
 echo -e "${GREEN}=> Installing dependencies...${EOL}\n"
 pip-sync --quiet
 
-echo -e "\n${GREEN}=> Linting API...${EOL}"
+echo -e "${GREEN}=> Linting API...${EOL}"
 ./lint.sh
 
 echo -e "${GREEN}=> Deactivating virtual environment...${EOL}\n"
