@@ -102,6 +102,12 @@ pnpm update
 pnpm audit
 ```
 
+### To manually lint files:
+
+```bash
+pnpm run lint
+```
+
 ### To run `package.json` script:
 
 ```bash

@@ -11,3 +11,5 @@ services:
     image: nfld-backend
     container_name: nfld-backend
     restart: unless-stopped
+    ports:
+      - 5555:5555

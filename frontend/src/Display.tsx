@@ -115,8 +115,9 @@ export default function Display({ teamSelected }: { teamSelected: string }) {
     <div className="container">
       <div className="card">
         <div className="card-body">
-          <h3 className="card-title fw-bold">Game Schedule</h3>
-          <h6 className="card-subtitle text-muted"> &nbsp; {season} Season</h6>
+          <h2 className="card-title fw-bold text-center">
+            {season} Regular Season Schedule
+          </h2>
           {schedule.map((data: ISchedule) => (
             <div className="card" key={data.id}>
               <div className="card-body">

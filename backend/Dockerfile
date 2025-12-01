@@ -16,4 +16,4 @@ RUN rm requirements.txt pyproject.toml
 
 EXPOSE 5555
 
-CMD ["gunicorn", "wsgi:api", "-b", ":5555", "-w", "2"]
+CMD ["gunicorn", "wsgi:api", "-b", "0.0.0.0:5555", "-w", "2"]

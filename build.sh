@@ -12,6 +12,6 @@ popd > /dev/null || exit
 read -p "Run Docker Compose (Y/n)? " answer
 if [ "$answer" == "y" ] || [ "$answer" == "Y" ] || [ -z "$answer" ]; then
     docker compose up -d
+else
+    echo -e "\n"
 fi
-
-echo -e "\n"

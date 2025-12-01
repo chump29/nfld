@@ -5,7 +5,7 @@
 ```bash
 ./api.py
 # or
-python3 api.py
+python3 api.py &
 ```
 
 ### To build standalone Docker image:
@@ -18,13 +18,23 @@ python3 api.py
 
 # Python stuff
 
+### Virtual environment:
+
+```bash
+# Activate
+source .venv/bin/activate
+
+# Deactivate
+deactivate
+```
+
 ### To upgrade `pip`:
 
 ```bash
 pip install --upgrade pip
 ```
 
-### To install `pip-tools`:
+### To install `pip-tools` *(for `pip-compile`/`pip-sync`)*:
 
 ```bash
 pip install pip-tools
@@ -59,7 +69,9 @@ pip-review
 ### To upgrade dependency:
 
 ```bash
-pip-compile --upgrade # all dependencies
+pip-compile --upgrade --extra dev # all dependencies
+# or
+pip-compile --upgrade # prod dependencies
 # or
 pip-compile --upgrade-package [package]
 ```

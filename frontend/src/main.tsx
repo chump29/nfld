@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 
 import Dashboard from './Dashboard.tsx'
 
+import 'bootstrap/dist/css/bootstrap.min.css'
 import './main.css'
 
 if (import.meta.env.DEV) {

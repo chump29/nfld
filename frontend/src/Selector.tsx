@@ -39,11 +39,13 @@ export default function Selector() {
         const teams: ITeam[] = []
         /* eslint-disable  @typescript-eslint/no-explicit-any */
         response.data.forEach((d: any) => {
-          teams.push({
-            id: d.team.id,
-            abbreviation: d.team.abbreviation,
-            displayName: d.team.displayName
-          } as ITeam)
+          if (d.team.isActive) {
+            teams.push({
+              id: d.team.id,
+              abbreviation: d.team.abbreviation,
+              displayName: d.team.displayName
+            } as ITeam)
+          }
         })
         setTeamList(teams)
       })
