@@ -13,10 +13,10 @@ echo -e "${GREEN}=> Activating virtual environment...${EOL}\n"
 source .venv/bin/activate
 
 echo -e "${GREEN}=> Gathering dependencies...${EOL}\n"
-pip-compile --extra dev --strip-extras
+pip-compile --extra dev --strip-extras --quiet
 
-echo -e "\n${GREEN}=> Installing dependencies...${EOL}\n"
-pip-sync
+echo -e "${GREEN}=> Installing dependencies...${EOL}\n"
+pip-sync --quiet
 
 echo -e "\n${GREEN}=> Linting API...${EOL}"
 ./lint.sh
