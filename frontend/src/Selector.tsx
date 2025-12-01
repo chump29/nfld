@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type ChangeEvent } from 'react'
 import Form from 'react-bootstrap/Form'
 
 import axios, { AxiosError, type AxiosResponse } from 'axios'
@@ -18,17 +18,24 @@ const api_url = import.meta.env.VITE_API_URL
 export default function Selector() {
   const [teamList, setTeamList] = useState([] as ITeam[])
   const [teamSelected, setTeamSelected] = useState<string>('')
-  const [isVisible, setIsVisible] = useState(false)
+  const [seasonSelected, setSeasonSelected] = useState<string>('')
 
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const isValid = (): boolean => {
+    return (
+      teamSelected.length > 0 &&
+      teamSelected !== '0' &&
+      seasonSelected.length > 0 &&
+      seasonSelected !== '0'
+    )
+  }
+
+  const handleTeamChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setTeamSelected(e.target.value)
+    e.target.blur()
+  }
 
-    if (e.target.value.length > 0) {
-      setIsVisible(true)
-    } else {
-      setIsVisible(false)
-    }
-
+  const handleSeasonChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    setSeasonSelected(e.target.value)
     e.target.blur()
   }
 
@@ -59,8 +66,11 @@ export default function Selector() {
       <Form>
         <Form.Group className="mb-3">
           <Form.Label className="fs-5 fw-bold">NFL Team</Form.Label>
-          <Form.Select onChange={handleChange} value={teamSelected} size="lg">
-            <option className="firstOption" value="">
+          <Form.Select
+            onChange={handleTeamChange}
+            value={teamSelected}
+            size="lg">
+            <option className="firstOption" key="0" value="0">
               Choose a team...
             </option>
             {teamList.map((data: ITeam) => (
@@ -70,8 +80,27 @@ export default function Selector() {
             ))}
           </Form.Select>
         </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label className="fs-5 fw-bold">Schedule</Form.Label>
+          <Form.Select
+            onChange={handleSeasonChange}
+            value={seasonSelected}
+            size="lg">
+            <option className="firstOption" key="0" value="0">
+              Choose a schedule...
+            </option>
+            <option key="1" value="1">
+              Preseason
+            </option>
+            <option key="2" value="2">
+              Regular Season
+            </option>
+          </Form.Select>
+        </Form.Group>
       </Form>
-      {isVisible ? <Display teamSelected={teamSelected} /> : null}
+      {isValid() ? (
+        <Display teamSelected={teamSelected} seasonSelected={seasonSelected} />
+      ) : null}
     </>
   )
 }

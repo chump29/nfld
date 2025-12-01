@@ -28,10 +28,10 @@ def get_url(url):
         print(f"Error: {e}")
         return None
 
-@api.route("/schedule/<team>")
-def get_schedule(team: str):
+@api.route("/schedule/<team>/<season>")
+def get_schedule(team: str, season: str):
     """ Returns team schedule """
-    response = get_url(f"https://site.web.api.espn.com/apis/site/v2/sports/football/nfl/teams/{team}/schedule?region=us&lang=en&season=2025&seasontype=2") # pylint: disable=line-too-long
+    response = get_url(f"https://site.web.api.espn.com/apis/site/v2/sports/football/nfl/teams/{team}/schedule?region=us&lang=en&season=2025&seasontype={season}") # pylint: disable=line-too-long
     schedule = {}
     if response:
         schedule = response["events"]

@@ -33,6 +33,12 @@ const days = [
   'Saturday'
 ]
 
+/* eslint-disable  @typescript-eslint/no-explicit-any */
+const schedules: any = {
+  '1': 'Preseason',
+  '2': 'Regular Season'
+}
+
 const getOrdinal = (number: number) => {
   return number > 0
     ? ['th', 'st', 'nd', 'rd'][
@@ -43,19 +49,26 @@ const getOrdinal = (number: number) => {
 
 const api_url = import.meta.env.VITE_API_URL
 
-export default function Display({ teamSelected }: { teamSelected: string }) {
+export default function Display({
+  teamSelected,
+  seasonSelected
+}: {
+  teamSelected: string
+  seasonSelected: string
+}) {
   const [schedule, setSchedule] = useState([] as ISchedule[])
   const [season, setSeason] = useState<string>('N/A')
+  const [scheduleType, setScheduleType] = useState<string>('N/A')
 
   useEffect(() => {
     axios
-      .get(api_url + '/schedule/' + teamSelected)
+      .get(api_url + '/schedule/' + teamSelected + '/' + seasonSelected)
       .then((response: AxiosResponse) => {
         const schedule: ISchedule[] = []
         let week = 0
         /* eslint-disable  @typescript-eslint/no-explicit-any */
         response.data.forEach((d: any) => {
-          if (++week !== d.week.number) {
+          if (++week !== d.week.number && seasonSelected === '2') {
             schedule.push({
               date: '',
               week: `Week ${week++}`,
@@ -103,20 +116,21 @@ export default function Display({ teamSelected }: { teamSelected: string }) {
             id: d.id
           } as ISchedule)
           setSeason(d.season.displayName)
+          setScheduleType(schedules[seasonSelected])
         })
         setSchedule(schedule)
       })
       .catch((error: AxiosError) => {
         console.error(error.message)
       })
-  }, [teamSelected, api_url])
+  }, [teamSelected, seasonSelected, api_url])
 
   return (
     <div className="container">
       <div className="card">
         <div className="card-body">
           <h2 className="card-title fw-bold text-center">
-            {season} Regular Season Schedule
+            {season} {scheduleType} Schedule
           </h2>
           {schedule.map((data: ISchedule) => (
             <div className="card" key={data.id}>
