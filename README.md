@@ -5,7 +5,8 @@
 python3 -m venv .venv
 source .venv/bin/activate
 cd backend
-pip install -r requirements.txt
+pip-compile --extra dev
+pip-sync
 python3 api.py &
 deactivate
 cd ..
@@ -13,8 +14,7 @@ cd ..
 
 ### Frontend:
 ```bash
-#npm create vite@latest frontend -- --template react-ts
 cd frontend
-npm ci
-npm run dev
+pnpm i
+pnpm run dev
 ```
