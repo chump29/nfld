@@ -1,4 +1,4 @@
-import Selector from './Selector.tsx'
+import Selector from "./Selector.tsx"
 
 export default function Dashboard() {
   return (

@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from "react"
 
-import axios, { AxiosError, type AxiosResponse } from 'axios'
+import axios, { AxiosError, type AxiosResponse } from "axios"
 
-import Bye from './Bye.tsx'
-import Week from './Week.tsx'
+import Bye from "./Bye.tsx"
+import Week from "./Week.tsx"
 
-import './Display.css'
+import "./Display.css"
 
 export interface ISchedule {
   date: string
@@ -24,27 +24,27 @@ interface ITeam {
 }
 
 const days = [
-  'Sunday',
-  'Monday',
-  'Tuesday',
-  'Wednesday',
-  'Thursday',
-  'Friday',
-  'Saturday'
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday"
 ]
 
 /* eslint-disable  @typescript-eslint/no-explicit-any */
 const schedules: any = {
-  '1': 'Preseason',
-  '2': 'Regular Season'
+  "1": "Preseason",
+  "2": "Regular Season"
 }
 
 const getOrdinal = (number: number) => {
   return number > 0
-    ? ['th', 'st', 'nd', 'rd'][
+    ? ["th", "st", "nd", "rd"][
         (number > 3 && number < 21) || number % 10 > 3 ? 0 : number % 10
       ]
-    : ''
+    : ""
 }
 
 const api_url = import.meta.env.VITE_API_URL
@@ -57,24 +57,24 @@ export default function Display({
   seasonSelected: string
 }) {
   const [schedule, setSchedule] = useState([] as ISchedule[])
-  const [season, setSeason] = useState<string>('N/A')
-  const [scheduleType, setScheduleType] = useState<string>('N/A')
+  const [season, setSeason] = useState<string>("N/A")
+  const [scheduleType, setScheduleType] = useState<string>("N/A")
 
   useEffect(() => {
     axios
-      .get(api_url + '/schedule/' + teamSelected + '/' + seasonSelected)
+      .get(api_url + "/schedule/" + teamSelected + "/" + seasonSelected)
       .then((response: AxiosResponse) => {
         const schedule: ISchedule[] = []
         let week = 0
         /* eslint-disable  @typescript-eslint/no-explicit-any */
         response.data.forEach((d: any) => {
-          if (++week !== d.week.number && seasonSelected === '2') {
+          if (++week !== d.week.number && seasonSelected === "2") {
             schedule.push({
-              date: '',
+              date: "",
               week: `Week ${week++}`,
               teams: [],
-              venue: '',
-              status: '',
+              venue: "",
+              status: "",
               id: `${d.id}.1`
             })
           }
@@ -82,24 +82,24 @@ export default function Display({
           /* eslint-disable  @typescript-eslint/no-explicit-any */
           d.competitions[0].competitors.forEach((c: any) => {
             teams.push({
-              record: c.record ? c.record[0].displayValue : 'TBD',
-              score: c.score ? c.score.displayValue : 'TBD',
+              record: c.record ? c.record[0].displayValue : "TBD",
+              score: c.score ? c.score.displayValue : "TBD",
               name: c.team.displayName,
               logo: c.team.logos[3].href
             })
           })
           const date = new Date(d.date)
           const dow = days[date.getDay()]
-          const month = date.toLocaleString('en-US', { month: 'long' })
+          const month = date.toLocaleString("en-US", { month: "long" })
           const day = date.getDate()
-          const time = date.toLocaleTimeString('en-US', {
-            hour: 'numeric',
-            minute: '2-digit'
+          const time = date.toLocaleTimeString("en-US", {
+            hour: "numeric",
+            minute: "2-digit"
           })
           const tz =
-            Intl.DateTimeFormat(undefined, { timeZoneName: 'short' })
+            Intl.DateTimeFormat(undefined, { timeZoneName: "short" })
               .formatToParts(date)
-              .find((part) => part.type === 'timeZoneName')?.value ?? ''
+              .find((part) => part.type === "timeZoneName")?.value ?? ""
           const competitions = d.competitions[0]
           schedule.push({
             date: `${dow}, ${month} ${day}${getOrdinal(day)} @ ${time} ${tz}`,
@@ -108,9 +108,9 @@ export default function Display({
             venue:
               competitions.venue.fullName +
               (competitions.notes.length > 0
-                ? ' - ' + competitions.notes[0].headline
-                : ''),
-            status: competitions.status.type.shortDetail.includes('Final')
+                ? " - " + competitions.notes[0].headline
+                : ""),
+            status: competitions.status.type.shortDetail.includes("Final")
               ? competitions.status.type.shortDetail
               : competitions.status.type.description,
             id: d.id

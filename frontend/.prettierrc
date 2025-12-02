@@ -2,7 +2,6 @@
   "arrowParens": "always",
   "bracketSameLine": true,
   "semi": false,
-  "singleQuote": true,
   "trailingComma": "none",
   "plugins": ["prettier-plugin-organize-imports"]
 }

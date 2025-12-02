@@ -1,11 +1,11 @@
-import { useEffect, useState, type ChangeEvent } from 'react'
-import Form from 'react-bootstrap/Form'
+import { useEffect, useState, type ChangeEvent } from "react"
+import Form from "react-bootstrap/Form"
 
-import axios, { AxiosError, type AxiosResponse } from 'axios'
+import axios, { AxiosError, type AxiosResponse } from "axios"
 
-import Display from './Display.tsx'
+import Display from "./Display.tsx"
 
-import './Selector.css'
+import "./Selector.css"
 
 export interface ITeam {
   id: string
@@ -17,15 +17,15 @@ const api_url = import.meta.env.VITE_API_URL
 
 export default function Selector() {
   const [teamList, setTeamList] = useState([] as ITeam[])
-  const [teamSelected, setTeamSelected] = useState<string>('')
-  const [seasonSelected, setSeasonSelected] = useState<string>('')
+  const [teamSelected, setTeamSelected] = useState<string>("")
+  const [seasonSelected, setSeasonSelected] = useState<string>("")
 
   const isValid = (): boolean => {
     return (
       teamSelected.length > 0 &&
-      teamSelected !== '0' &&
+      teamSelected !== "0" &&
       seasonSelected.length > 0 &&
-      seasonSelected !== '0'
+      seasonSelected !== "0"
     )
   }
 
@@ -41,7 +41,7 @@ export default function Selector() {
 
   useEffect(() => {
     axios
-      .get(api_url + '/teams')
+      .get(api_url + "/teams")
       .then((response: AxiosResponse) => {
         const teams: ITeam[] = []
         /* eslint-disable  @typescript-eslint/no-explicit-any */

@@ -1,4 +1,4 @@
-import type { ISchedule } from './Display'
+import type { ISchedule } from "./Display"
 
 export default function Week({ data }: { data: ISchedule }) {
   return (
@@ -7,7 +7,7 @@ export default function Week({ data }: { data: ISchedule }) {
         <img
           src={data.teams[0].logo}
           width={75}
-          alt={data.teams[0].name + ' logo'}
+          alt={data.teams[0].name + " logo"}
         />
         <p className="fw-bold">{data.teams[0].name}</p>
       </div>
@@ -31,7 +31,7 @@ export default function Week({ data }: { data: ISchedule }) {
         <img
           src={data.teams[1].logo}
           width={75}
-          alt={data.teams[1].name + ' logo'}
+          alt={data.teams[1].name + " logo"}
         />
         <p className="fw-bold">{data.teams[1].name}</p>
       </div>
