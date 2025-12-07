@@ -34,7 +34,7 @@ COPY --from=build /app/dist .
 
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-RUN rm -rf /docker-entrypoint.d
+#RUN rm -rf /docker-entrypoint.d
 
 EXPOSE 80
 
