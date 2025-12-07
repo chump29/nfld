@@ -1,4 +1,4 @@
-import type { ISchedule } from "./Display"
+import type { ISchedule } from "../display"
 
 export default function Week({ data }: { data: ISchedule }) {
   return (

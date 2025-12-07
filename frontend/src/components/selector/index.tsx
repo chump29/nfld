@@ -3,9 +3,9 @@ import Form from "react-bootstrap/Form"
 
 import axios, { AxiosError, type AxiosResponse } from "axios"
 
-import Display from "./Display.tsx"
+import Display from "../display"
 
-import "./Selector.css"
+import "./index.css"
 
 export interface ITeam {
   id: string

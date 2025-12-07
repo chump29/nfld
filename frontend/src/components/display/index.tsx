@@ -2,10 +2,10 @@ import { useEffect, useState } from "react"
 
 import axios, { AxiosError, type AxiosResponse } from "axios"
 
-import Bye from "./Bye.tsx"
-import Week from "./Week.tsx"
+import Bye from "../bye"
+import Week from "../week"
 
-import "./Display.css"
+import "./index.css"
 
 export interface ISchedule {
   date: string
