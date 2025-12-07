@@ -1,3 +1,22 @@
+# NFLd frontend flowchart
+
+```mermaid
+flowchart LR
+index(index.html)
+main(src/main.tsx)
+dashboard(src/Dashboard.tsx)
+selector(src/Selector.tsx)
+display(src/Display.tsx)
+week(src/Week.tsx)
+bye(src/Bye.tsx)
+index-->main-->dashboard-->selector-->display
+display-->week
+display-->bye
+port@{shape: comment, label: "&nbsp; Nginx exposes port 80"}
+```
+
+___
+
 # PNPM stuff
 
 ### To enable PNPM:

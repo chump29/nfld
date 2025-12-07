@@ -1,3 +1,20 @@
+# Compose flowchart
+
+```mermaid
+flowchart LR
+frontend@{shape: rounded, label: "frontend (direct)"}
+frontendPort@{shape: rounded, label: "http://localhost:8888"}
+backend@{shape: rounded, label: "backend (direct)"}
+backendPort@{shape: rounded, label: "http://localhost:5555"}
+nginx@{shape: rounded, label: "nginx (entrypoint)"}
+nginxPort@{shape: rounded, label: "http://localhost:88"}
+frontend-->frontendPort
+backend-->backendPort
+nginx-->nginxPort
+```
+
+___
+
 # Development stuff
 
 ### Backend:

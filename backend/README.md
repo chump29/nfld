@@ -1,3 +1,17 @@
+# NFLd backend flowchart
+
+```mermaid
+flowchart
+api@{shape: rect, label: "/api"}
+teams@{shape: fr-rect, label: "/teams"}
+schedule[["`/schedule/*[team]*/*[season]*`"]]
+api-->teams
+api-->schedule
+port@{shape: comment, label: "&nbsp; Flask exposes port 5555"}
+```
+
+___
+
 # NFLd stuff
 
 ### To run `api.py`:
