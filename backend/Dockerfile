@@ -6,14 +6,15 @@ WORKDIR /backend
 
 ENV PYTHONUNBUFFERED=1
 
-RUN pip install --upgrade --no-cache-dir pip pip-tools
 COPY *.py pyproject.toml /backend/
-RUN pip-compile
-RUN pip-sync
-RUN pip uninstall pip-tools -y
-RUN pip cache purge
-RUN rm requirements.txt pyproject.toml
+RUN pip install --upgrade --no-cache-dir pip pip-tools && \
+    pip-compile --strip-extras && \
+    pip-sync && \
+    pip uninstall pip-tools -y && \
+    pip cache purge && \
+    rm requirements.txt pyproject.toml
 
 EXPOSE 5555
 
-CMD ["gunicorn", "wsgi:api", "-b", "0.0.0.0:5555", "-w", "2"]
+#CMD ["gunicorn", "wsgi:api", "-b", "0.0.0.0:5555", "-w", "2"]
+CMD ["python3", "api.py"]

@@ -21,7 +21,10 @@ pip-sync --quiet
 echo -e "${GREEN}=> Linting API...${EOL}"
 ./lint.sh
 
-echo -e "${GREEN}=> Deactivating virtual environment...${EOL}\n"
+echo -e "${GREEN}=> Running tests...${EOL}\n"
+behave --stop
+
+echo -e "\n${GREEN}=> Deactivating virtual environment...${EOL}\n"
 deactivate
 
 echo -e "${GREEN}=> Creating image...${EOL}\n"

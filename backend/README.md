@@ -87,3 +87,9 @@ pip-sync
 ```bash
 ./lint.sh
 ```
+
+### To run tests:
+
+```bash
+behave
+```
