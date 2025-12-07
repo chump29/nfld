@@ -5,7 +5,7 @@
 from datetime import datetime
 from requests import RequestException
 
-from flask import abort, Flask
+from flask import Flask
 from requests_cache import CachedSession
 
 api = Flask(__name__)
@@ -29,7 +29,7 @@ def get_url(url):
         return None
 
 
-@api.route("/schedule/<team>/<season>", methods=["GET"])
+@api.route("/api/schedule/<team>/<season>", methods=["GET"])
 def get_schedule(team: str, season: str):
     """Returns team schedule"""
     response = get_url(
@@ -41,7 +41,7 @@ def get_schedule(team: str, season: str):
     return schedule
 
 
-@api.route("/teams", methods=["GET"])
+@api.route("/api/teams", methods=["GET"])
 def get_teams():
     """Returns all teams"""
     response = get_url(
@@ -51,12 +51,6 @@ def get_teams():
     if response:
         teams = response["sports"][0]["leagues"][0]["teams"]
     return teams
-
-
-@api.route("/")
-def not_found():
-    """Invalid path"""
-    abort(404)
 
 
 if __name__ == "__main__":

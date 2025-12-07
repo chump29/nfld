@@ -16,5 +16,4 @@ RUN pip install --upgrade --no-cache-dir pip pip-tools && \
 
 EXPOSE 5555
 
-#CMD ["gunicorn", "wsgi:api", "-b", "0.0.0.0:5555", "-w", "2"]
 CMD ["python3", "api.py"]

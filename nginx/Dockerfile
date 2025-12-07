@@ -1,0 +1,7 @@
+#!/usr/bin/env -S docker build . --tag=nfld-nginx --file
+
+FROM nginx:alpine
+
+COPY default.conf /etc/nginx/conf.d/default.conf
+
+EXPOSE 80

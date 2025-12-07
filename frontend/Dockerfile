@@ -1,41 +1,27 @@
 #!/usr/bin/env -S docker build . --tag=nfld-frontend --file
 
-FROM node:24-alpine AS base
+FROM node:24-alpine AS build
 
 RUN corepack enable pnpm
 
 ENV PATH="/pnmp:$PATH"
 
 WORKDIR /app
-COPY . .
 
-# -=-
-
-FROM base AS dependencies
-
-RUN --mount=type=cache,target=/pnpm/store pnpm fetch --frozen-lockfile --prod
-RUN --mount=type=cache,target=/pnpm/store pnpm install --frozen-lockfile --prod
-
-# -=-
-
-FROM base AS build
+COPY package.json pnpm-*.yaml ./
 
 RUN --mount=type=cache,target=/pnpm/store pnpm install --frozen-lockfile
+
+COPY . .
+
 RUN pnpm run prod
 
 # -=-
 
-FROM nginx:alpine AS frontend
+FROM nginx:alpine
 
-WORKDIR /frontend
+COPY --from=build /app/dist /usr/share/nginx/html
 
-COPY --from=dependencies /app/node_modules ./node_modules
-COPY --from=build /app/dist .
-
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-#RUN rm -rf /docker-entrypoint.d
+RUN rm -f /usr/share/nginx/html/50x.html
 
 EXPOSE 80
-
-CMD ["nginx", "-g", "daemon off;"]

@@ -10,7 +10,7 @@ clear
 echo -e "${RED}=> FRONTEND <=${EOL}\n"
 
 echo -e "${GREEN}=> Installing dependencies...${EOL}\n"
-pnpm install
+pnpm install --frozen-lockfile
 
 echo -e "\n${GREEN}=> Linting...${EOL}"
 pnpm run lint

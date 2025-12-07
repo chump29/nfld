@@ -1,22 +1,3 @@
-# Docker stuff
-
-### To build images:
-
-```bash
-# Backend & Frontend
-./build.sh
-
-# Backend
-cd backend && ./build.sh
-# or
-cd backend && ./Dockerfile
-
-# Frontend
-cd frontend && ./build.sh
-# or
-cd frontend && ./Dockerfile
-```
-
 # PNPM stuff
 
 ### To enable PNPM:
