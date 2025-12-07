@@ -5,6 +5,8 @@ services:
     restart: unless-stopped
     ports:
       - 8888:80
+    environment:
+      - TZ=America/Chicago
     labels:
       - wud.watch=false
       - dockge.imageupdates.check=false
