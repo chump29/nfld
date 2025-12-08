@@ -1,0 +1,27 @@
+img {
+  width: 75px;
+  height: 75px;
+}
+
+.recordL {
+  float: left;
+  display: block;
+  sup {
+    display: block;
+    margin-top: 3px;
+  }
+}
+
+.recordR {
+  float: right;
+  sup {
+    display: block;
+    margin-top: 3px;
+  }
+}
+
+.score {
+  text-wrap: nowrap;
+  font-size: 4vmin;
+  font-weight: bolder;
+}

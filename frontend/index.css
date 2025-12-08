@@ -1,0 +1,31 @@
+div#logo {
+  position: relative;
+  height: 75px;
+  width: 75px;
+  background-image: url("https://a.espncdn.com/i/teamlogos/leagues/500-dark/nfl.png");
+  background-repeat: no-repeat;
+  background-size: 75px 75px;
+  float: left;
+}
+
+div#d {
+  position: absolute;
+  font-size: 36px;
+  transform: rotate(30deg);
+  margin: 14px 57px;
+}
+
+.blue {
+  color: #013369;
+  -webkit-text-stroke: 1px #ffffff;
+}
+
+.red {
+  color: #d50a0a;
+  text-shadow: 3px 3px 6px #000000;
+}
+
+.nfld {
+  position: relative;
+  left: -50px;
+}

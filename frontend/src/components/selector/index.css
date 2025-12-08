@@ -2,3 +2,7 @@
   font-weight: bold;
   font-style: italic;
 }
+
+form {
+  margin-top: 32px;
+}
