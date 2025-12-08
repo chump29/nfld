@@ -22,7 +22,7 @@ echo -e "${GREEN}=> Linting API...${EOL}"
 ./lint.sh
 
 echo -e "${GREEN}=> Running tests...${EOL}\n"
-behave --stop
+./test.sh
 
 echo -e "\n${GREEN}=> Deactivating virtual environment...${EOL}\n"
 deactivate

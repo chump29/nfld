@@ -3,5 +3,5 @@
 if [ -z "$VIRTUAL_ENV" ]; then
     echo "Please activate a virtual environment!"
 else
-    pylint api.py
+    behave --stop
 fi

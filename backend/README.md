@@ -105,5 +105,5 @@ pip-sync
 ### To run tests:
 
 ```bash
-behave
+./test.sh
 ```
