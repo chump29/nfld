@@ -41,7 +41,7 @@ export default function Selector() {
 
   useEffect(() => {
     axios
-      .get(api_url + "/teams")
+      .get(api_url + "/api/teams")
       .then((response: AxiosResponse) => {
         const teams: ITeam[] = []
         /* eslint-disable  @typescript-eslint/no-explicit-any */

@@ -62,7 +62,7 @@ export default function Display({
 
   useEffect(() => {
     axios
-      .get(api_url + "/schedule/" + teamSelected + "/" + seasonSelected)
+      .get(api_url + "/api/schedule/" + teamSelected + "/" + seasonSelected)
       .then((response: AxiosResponse) => {
         const schedule: ISchedule[] = []
         let week = 0
