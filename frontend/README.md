@@ -1,14 +1,14 @@
 # NFLd frontend flowchart
 
 ```mermaid
-flowchart LR
+flowchart
 index(index.html)
 main(src/main.tsx)
-dashboard(src/Dashboard.tsx)
-selector(src/Selector.tsx)
-display(src/Display.tsx)
-week(src/Week.tsx)
-bye(src/Bye.tsx)
+dashboard(src/components/dashboard/index.tsx)
+selector(src/components/selector/index.tsx)
+display(src/components/display/index.tsx)
+week(src/components/week/index.tsx)
+bye(src/components/bye/index.tsx)
 index-->main-->dashboard-->selector-->display
 display-->week
 display-->bye
