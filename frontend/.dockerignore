@@ -5,5 +5,3 @@ node_modules
 *.sh
 dist
 README.md
-tsconfig.*
-vite.config.ts

@@ -12,4 +12,4 @@ if [ "$answer" == "y" ] || [ "$answer" == "Y" ] || [ -z "$answer" ]; then
     docker compose up -d
 fi
 
-echo
+echo -e "\n"
