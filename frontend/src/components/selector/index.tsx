@@ -65,7 +65,9 @@ export default function Selector() {
     <>
       <Form>
         <Form.Group className="mb-3">
-          <Form.Label className="fs-5 fw-bold">NFL Team</Form.Label>
+          <Form.Label className="fs-5 fw-bold" aria-label="title">
+            NFL Team
+          </Form.Label>
           <Form.Select
             onChange={handleTeamChange}
             value={teamSelected}

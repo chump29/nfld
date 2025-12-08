@@ -120,7 +120,6 @@ pnpm run build:dev # DEV
 pnpm run build # PROD
 ```
 
-<!--
 ### To run tests:
 
 ```bash
@@ -128,7 +127,6 @@ pnpm run test:dev # hot reloads
 # or
 pnpm run test # not interactive
 ```
--->
 
 ### To run `package.json` script:
 
