@@ -115,9 +115,9 @@ pnpm run lint:prettier
 ### To manually build files:
 
 ```bash
-pnpm run build:dev # watches changed files
+pnpm run build:dev # DEV
 # or
-pnpm run build # not interactive
+pnpm run build # PROD
 ```
 
 <!--
