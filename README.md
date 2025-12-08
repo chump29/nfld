@@ -2,7 +2,7 @@
 
 ```mermaid
 flowchart LR
-frontend@{shape: rounded, label: "frontend (direct)"}
+frontend@{shape: rounded, label: "frontend"}
 frontendPort@{shape: rounded, label: "http://localhost:8888"}
 backend@{shape: rounded, label: "backend (direct)"}
 backendPort@{shape: rounded, label: "http://localhost:5555"}

@@ -3,8 +3,8 @@ services:
     image: nfld-frontend
     container_name: nfld-frontend
     restart: unless-stopped
-    expose:
-      - 80
+    ports:
+      - 8888:80
     environment:
       - TZ=America/Chicago
     labels:
