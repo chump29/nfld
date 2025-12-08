@@ -14,7 +14,7 @@ RUN --mount=type=cache,target=/pnpm/store pnpm install --frozen-lockfile
 
 COPY . .
 
-RUN pnpm run build:prod
+RUN pnpm run build
 
 # -=-
 

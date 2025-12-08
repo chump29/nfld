@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "rimraf dist node_modules",
     "build:dev": "vite",
-    "build:prod": "vite build",
+    "build": "vite build",
     "lint": "pnpm run lint:eslint && pnpm run lint:pretty",
     "lint:eslint": "eslint ./src --fix",
     "lint:pretty": "prettier . --write"

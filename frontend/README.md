@@ -112,6 +112,14 @@ pnpm run lint:eslint
 pnpm run lint:prettier
 ```
 
+### To manually build files:
+
+```bash
+pnpm run build:dev # watches changed files
+# or
+pnpm run build # not interactive
+```
+
 <!--
 ### To run tests:
 
