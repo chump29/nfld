@@ -13,7 +13,7 @@ echo -e "${GREEN}=> Activating virtual environment...${EOL}\n"
 source .venv/bin/activate
 
 echo -e "${GREEN}=> Gathering dependencies...${EOL}\n"
-pip-compile --extra dev --strip-extras --quiet
+pip-compile --extra dev --quiet
 
 echo -e "${GREEN}=> Installing dependencies...${EOL}\n"
 pip-sync --quiet
