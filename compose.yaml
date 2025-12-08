@@ -16,6 +16,7 @@ services:
     restart: unless-stopped
     ports:
       - 5555:5555
+    stop_signal: SIGINT
     labels:
       - wud.watch=false
       - dockge.imageupdates.check=false
