@@ -1,4 +1,9 @@
 **/*.html
+node_modules
 dist
 *.md
-pnpm*
+pnpm-*
+.dockerignore
+.env.*
+*.sh
+Dockerfile

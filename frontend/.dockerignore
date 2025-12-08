@@ -2,6 +2,8 @@
 eslint.config.ts
 node_modules
 .dockerignore
-build.sh
+*.sh
 dist
 README.md
+tsconfig.*
+vite.config.ts

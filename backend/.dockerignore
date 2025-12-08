@@ -1,6 +1,6 @@
-lint.sh
+*.sh
 __pycache__
 nfld.sqlite
-build.sh
 .dockerignore
 README.md
+.venv
