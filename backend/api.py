@@ -6,9 +6,11 @@ from datetime import datetime
 from requests import RequestException
 
 from flask import Flask
+from flask_cors import CORS
 from requests_cache import CachedSession
 
 api = Flask(__name__)
+CORS(api)
 
 session = CachedSession(
     "nfld", expire_after=86400, allowable_codes=[200], allowable_methods=["GET"]
