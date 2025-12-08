@@ -7,12 +7,12 @@ from behave import given, when, then
 from api import get_teams
 
 
-@given("A user wants a listing of all teams")
+@given("that a user wants a listing of all teams")
 def step_impl(context):
     pass
 
 
-@when("/teams API is called")
+@when("/teams API endpoint is called")
 def step_impl(context):
     context.teams = get_teams()
     assert context.failed is not True, "/teams call failed"
@@ -23,7 +23,7 @@ def step_impl(context):
     assert len(context.teams) > 0, "Empty JSON response"
 
 
-@then("KC is found")
+@then("KC team is found")
 def step_impl(context):
     found = False
     for team in context.teams:
