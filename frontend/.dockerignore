@@ -1,7 +1,6 @@
 .prettier*
 eslint.config.ts
 node_modules
-.dockerignore
 *.sh
 dist
 README.md

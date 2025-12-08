@@ -1,6 +1,5 @@
 *.sh
 __pycache__
 nfld.sqlite
-.dockerignore
 README.md
 .venv
