@@ -32,7 +32,7 @@ deactivate
 ```bash
 cd frontend
 pnpm i
-pnpm run dev
+pnpm run build:dev
 ```
 
 # Docker stuff
@@ -46,28 +46,33 @@ pnpm run dev
 # Backend
 cd backend && ./build.sh
 # or
-cd backend && ./Dockerfile
+cd backend && ./Dockerfile # image only
 
 # Frontend
 cd frontend && ./build.sh
 # or
-cd frontend && ./Dockerfile
+cd frontend && ./Dockerfile # image only
 
 # Nginx
 cd nginx && ./build.sh
 # or
-cd nginx && ./Dockerfile
+cd nginx && ./Dockerfile # image only
 ```
 
 # Nginx stuff
 
 ```nginx
 server {
-    include ssl_params;
+    listen 443 ssl http2;
+    ssl_certificate [certificate].crt;
+    ssl_certificate_key [certificate].key;
     server_name [sub].[domain].com;
     location / {
         proxy_pass http://0.0.0.0:88;
-        include proxy_params;
+        proxy_set_header Host $http_host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Host $server_name;
     }
 }
 ```

@@ -105,8 +105,22 @@ pnpm audit
 ### To manually lint files:
 
 ```bash
-pnpm run lint
+pnpm run lint # runs eslint & prettier
+# or
+pnpm run lint:eslint
+# or
+pnpm run lint:prettier
 ```
+
+<!--
+### To run tests:
+
+```bash
+pnpm run test:dev # hot reloads
+# or
+pnpm run test # not interactive
+```
+-->
 
 ### To run `package.json` script:
 
