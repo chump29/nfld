@@ -10,16 +10,23 @@ export default function Week({ data }: { data: ISchedule }) {
           <sup>{data.teams[0].record}</sup>
         </span>
         <img src={data.teams[0].logo} alt={data.teams[0].name + " logo"} />
-        <p className="fw-bold">{data.teams[0].name}</p>
+        <p className="team">{data.teams[0].name}</p>
       </div>
       <div className="row row-list col-4">
         <div className="col text-center">
           <br />
+          {data.teams[0].score !== "TBD" &&
           <span className="score">
             {data.teams[0].score} - {data.teams[1].score}
-          </span>
-          <br />
-          <span className="small">{data.status}</span>
+          </span>}
+          {data.teams[0].score !== "TBD" &&
+          <br />}
+          {data.teams[0].score !== "TBD" &&
+          <span className="small">{data.status}</span>}
+          {data.teams[0].score === "TBD" &&
+          <span className="score">
+            TBD
+          </span>}
         </div>
       </div>
       <div className="col text-center">
@@ -31,7 +38,7 @@ export default function Week({ data }: { data: ISchedule }) {
           width={75}
           alt={data.teams[1].name + " logo"}
         />
-        <p className="fw-bold">{data.teams[1].name}</p>
+        <p className="team">{data.teams[1].name}</p>
       </div>
     </>
   )
