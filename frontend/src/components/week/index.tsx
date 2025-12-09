@@ -15,18 +15,16 @@ export default function Week({ data }: { data: ISchedule }) {
       <div className="row row-list col-4">
         <div className="col text-center">
           <br />
-          {data.teams[0].score !== "TBD" &&
-          <span className="score">
-            {data.teams[0].score} - {data.teams[1].score}
-          </span>}
-          {data.teams[0].score !== "TBD" &&
-          <br />}
-          {data.teams[0].score !== "TBD" &&
-          <span className="small">{data.status}</span>}
-          {data.teams[0].score === "TBD" &&
-          <span className="score">
-            TBD
-          </span>}
+          {data.teams[0].score !== "TBD" && (
+            <span className="score">
+              {data.teams[0].score} - {data.teams[1].score}
+            </span>
+          )}
+          {data.teams[0].score !== "TBD" && <br />}
+          {data.teams[0].score !== "TBD" && (
+            <span className="small">{data.status}</span>
+          )}
+          {data.teams[0].score === "TBD" && <span className="score">TBD</span>}
         </div>
       </div>
       <div className="col text-center">
