@@ -10,3 +10,14 @@
 .row-list {
   margin: 0;
 }
+
+.footer {
+  position: relative;
+  top: 10px;
+}
+
+.card-title {
+  font-weight: bold;
+  color: #d50a0a !important;
+  text-shadow: 2px 2px #000000;
+}

@@ -6,3 +6,8 @@
 form {
   margin-top: 32px;
 }
+
+label {
+  color: #d50a0a;
+  text-shadow: 2px 2px #000000;
+}

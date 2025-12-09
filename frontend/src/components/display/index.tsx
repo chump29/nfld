@@ -59,6 +59,7 @@ export default function Display({
   const [schedule, setSchedule] = useState([] as ISchedule[])
   const [season, setSeason] = useState<string>("N/A")
   const [scheduleType, setScheduleType] = useState<string>("N/A")
+  const [isVisible, setIsVisible] = useState<boolean>(false)
 
   useEffect(() => {
     axios
@@ -119,6 +120,7 @@ export default function Display({
           setScheduleType(schedules[seasonSelected])
         })
         setSchedule(schedule)
+        setIsVisible(true)
       })
       .catch((error: AxiosError) => {
         console.error(error.message)
@@ -127,27 +129,31 @@ export default function Display({
 
   return (
     <div className="container">
-      <div className="card">
-        <div className="card-body">
-          <h2 className="card-title fw-bold text-center">
-            {season} {scheduleType} Schedule
-          </h2>
-          {schedule.map((data: ISchedule) => (
-            <div className="card" key={data.id}>
-              <div className="card-body">
-                <div className="row row-list">
-                  {!data.teams.length ? <Bye /> : <Week data={data} />}
-                </div>
-                <div className="row row-list">
-                  <div className="col text-start ms-10 small">{data.week}</div>
-                  <div className="col text-center small">{data.venue}</div>
-                  <div className="col text-end me-10 small">{data.date}</div>
+      {isVisible && (
+        <div className="card">
+          <div className="card-body">
+            <h2 className="card-title text-center">
+              {season} {scheduleType} Schedule
+            </h2>
+            {schedule.map((data: ISchedule) => (
+              <div className="card" key={data.id}>
+                <div className="card-body">
+                  <div className="row row-list">
+                    {!data.teams.length ? <Bye /> : <Week data={data} />}
+                  </div>
+                  <div className="row row-list footer">
+                    <div className="col text-start ms-10 small">
+                      {data.week}
+                    </div>
+                    <div className="col text-center small">{data.venue}</div>
+                    <div className="col text-end me-10 small">{data.date}</div>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   )
 }

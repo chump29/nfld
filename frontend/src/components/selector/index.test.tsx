@@ -6,17 +6,8 @@ import Selector from "."
 vi.spyOn(console, "error").mockImplementation(() => undefined)
 
 beforeEach(() => {
-  const response = {
-    data: [
-      {
-        team: {
-          id: 12,
-          abbreviation: "KC",
-          displayName: "Kansas City Chiefs"
-        }
-      }
-    ]
-  } as AxiosResponse
+  // TODO
+  const response = {} as AxiosResponse
   vi.spyOn(axios, "get").mockResolvedValue(response)
 
   render(<Selector />)
