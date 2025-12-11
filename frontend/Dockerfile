@@ -1,20 +1,16 @@
 #!/usr/bin/env -S docker build . --tag=nfld-frontend --file
 
-FROM node:24-alpine AS build
+FROM node:25-alpine AS build
 
-RUN corepack enable pnpm
-
-ENV PATH="/pnmp:$PATH"
+RUN npm install --global --force corepack && \
+    corepack enable pnpm
 
 WORKDIR /app
 
-COPY package.json pnpm-*.yaml ./
-
-RUN --mount=type=cache,target=/pnpm/store pnpm install --frozen-lockfile
-
 COPY . .
 
-RUN pnpm run build
+RUN --mount=type=cache,target=/pnpm/store pnpm install --frozen-lockfile && \
+    pnpm run build
 
 # -=-
 
