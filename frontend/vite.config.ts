@@ -1,8 +1,9 @@
 import react from "@vitejs/plugin-react"
+import { ViteImageOptimizer } from "vite-plugin-image-optimizer"
 import { defineConfig } from "vitest/config"
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), ViteImageOptimizer()],
   test: {
     environment: "jsdom",
     globals: true,
