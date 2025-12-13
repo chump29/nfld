@@ -16,4 +16,6 @@ RUN pip install --upgrade --no-cache-dir pip pip-tools && \
 
 EXPOSE 5555
 
+HEALTHCHECK CMD python3 -m healthcheck || exit 1
+
 CMD ["gunicorn", "api:api", "-b", "0.0.0.0:5555", "-w", "9"]

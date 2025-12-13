@@ -53,5 +53,12 @@ def get_teams():
     return teams
 
 
+@api.route("/api/healthcheck", methods=["GET"])
+def healthcheck():
+    """Returns healthy response"""
+    return {
+        "status": "healthy"
+    }
+
 if __name__ == "__main__":
     api.run(host="0.0.0.0", port=5555)
