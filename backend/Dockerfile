@@ -6,7 +6,7 @@ WORKDIR /backend
 
 ENV PYTHONUNBUFFERED=1
 
-COPY *.py pyproject.toml /backend/
+COPY api.py pyproject.toml /backend/
 RUN pip install --upgrade --no-cache-dir pip pip-tools && \
     pip-compile --strip-extras && \
     pip-sync && \
@@ -15,7 +15,5 @@ RUN pip install --upgrade --no-cache-dir pip pip-tools && \
     rm requirements.txt pyproject.toml
 
 EXPOSE 5555
-
-HEALTHCHECK CMD python3 -m healthcheck || exit 1
 
 CMD ["gunicorn", "api:api", "-b", "0.0.0.0:5555", "-w", "9"]
