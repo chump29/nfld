@@ -13,11 +13,12 @@ backend-->backendPort
 nginx-->nginxPort
 ```
 
-___
+---
 
 # Development stuff
 
 ### Backend:
+
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
@@ -29,6 +30,7 @@ deactivate
 ```
 
 ### Frontend:
+
 ```bash
 cd frontend
 pnpm i

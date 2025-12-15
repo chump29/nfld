@@ -1,7 +1,6 @@
 **/*.html
 node_modules
 dist
-*.md
 pnpm-*
 .dockerignore
 .env.*

@@ -10,7 +10,7 @@ api-->schedule
 port@{shape: comment, label: "&nbsp; Flask exposes port 5555"}
 ```
 
-___
+---
 
 # NFLd stuff
 
@@ -48,7 +48,7 @@ deactivate
 pip install --upgrade pip
 ```
 
-### To install `pip-tools` *(for `pip-compile`/`pip-sync`)*:
+### To install `pip-tools` _(for `pip-compile`/`pip-sync`)_:
 
 ```bash
 pip install pip-tools

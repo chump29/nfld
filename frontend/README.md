@@ -15,7 +15,7 @@ display-->bye
 port@{shape: comment, label: "&nbsp; Nginx exposes port 80"}
 ```
 
-___
+---
 
 # PNPM stuff
 
