@@ -1,3 +1,8 @@
+# NFLd
+
+* Choose an NFL team and the season schedule
+* Full NFL schedule information will be displayed
+
 # Compose flowchart
 
 ```mermaid
