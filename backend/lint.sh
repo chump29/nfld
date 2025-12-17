@@ -1,7 +1,7 @@
 #!/usr/bin/env -S bash -e
 
 if [ -z "$VIRTUAL_ENV" ]; then
-    echo "Please activate a virtual environment!"
-else
-    pylint api.py
+    source .venv/bin/activate
 fi
+
+pylint api.py

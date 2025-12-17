@@ -1,10 +1,11 @@
 {
   "name": "nfld-frontend",
   "version": "1.0.0",
-  "description": "NFL team schedule picker",
+  "description": "NFL team schedule picker (Frontend)",
   "homepage": "https://github.com/chump29/nfld",
   "license": "GPL-3.0-only",
   "author": "Chris Post",
+  "keywords": ["NFL", "schedule"],
   "private": true,
   "type": "module",
   "scripts": {
@@ -49,6 +50,7 @@
     "vite-plugin-package-version": "^1.1.0",
     "vitest": "^4.0.16"
   },
+  "engineStrict": true,
   "engines": {
     "node": "~25",
     "pnpm": "~10"
