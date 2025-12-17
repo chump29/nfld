@@ -1,10 +1,11 @@
 import yearPlugin from "@8hobbies/vite-plugin-year"
 import react from "@vitejs/plugin-react"
 import { ViteImageOptimizer } from "vite-plugin-image-optimizer"
+import versionPlugin from "vite-plugin-package-version"
 import { defineConfig } from "vitest/config"
 
 export default defineConfig({
-  plugins: [react(), ViteImageOptimizer(), yearPlugin()],
+  plugins: [react(), ViteImageOptimizer(), yearPlugin(), versionPlugin()],
   test: {
     environment: "jsdom",
     globals: true,

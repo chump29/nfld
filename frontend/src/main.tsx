@@ -6,6 +6,9 @@ import Dashboard from "./components/dashboard"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "./main.css"
 
+document.getElementById("header")!.innerText =
+  `v${import.meta.env.PACKAGE_VERSION}`
+
 if (import.meta.env.DEV) {
   createRoot(document.getElementById("root")!).render(<Dashboard />)
 } else {
