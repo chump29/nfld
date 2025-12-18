@@ -10,6 +10,11 @@ services:
     labels:
       - wud.watch=false
       - dockge.imageupdates.check=false
+      - homepage.group=Personal
+      - homepage.name=NFLd
+      - homepage.icon=https://nfl.postfmly.com/favicon.png
+      - homepage.href=https://nfl.postfmly.com/
+      - homepage.description=nfl.postfmly.com
   nfld-backend:
     image: nfld-backend
     container_name: nfld-backend
@@ -32,3 +37,7 @@ services:
     labels:
       - wud.watch=false
       - dockge.imageupdates.check=false
+networks: {}
+x-dockge:
+  urls:
+    - https://nfl.postfmly.com
