@@ -15,6 +15,13 @@ services:
       - homepage.icon=https://nfl.postfmly.com/favicon.png
       - homepage.href=https://nfl.postfmly.com/
       - homepage.description=nfl.postfmly.com
+      - homepage.widget.type=customapi
+      - homepage.widget.url=https://api.postfmly.com/nfld/kc
+      - homepage.widget.refreshInterval=60000
+      - homepage.widget.mappings[0].field=team
+      - homepage.widget.mappings[0].label=Team
+      - homepage.widget.mappings[1].field=record
+      - homepage.widget.mappings[1].label=Record
   nfld-backend:
     image: nfld-backend
     container_name: nfld-backend
