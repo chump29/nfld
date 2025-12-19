@@ -52,18 +52,12 @@ pnpm run build:dev
 
 # Backend
 cd backend && ./build.sh
-# or
-cd backend && ./Dockerfile # image only
 
 # Frontend
 cd frontend && ./build.sh
-# or
-cd frontend && ./Dockerfile # image only
 
 # Nginx
 cd nginx && ./build.sh
-# or
-cd nginx && ./Dockerfile # image only
 ```
 
 # Nginx stuff

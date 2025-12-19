@@ -19,7 +19,11 @@ echo -e "\n${GREEN}=> Running tests...${EOL}"
 pnpm run test
 
 echo -e "${GREEN}=> Creating image...${EOL}\n"
-./Dockerfile
+NODE_VER=$(node --vsersion | cut -d "." -f 1)
+NODE=${NODE_VER:1}
+docker build --build-arg NODE="$NODE" --build-arg PNPM="$(pnpm --version)" --tag=nfld-frontend .
+unset NODE_VER
+unset NODE
 
 echo -e "\n${YELLOW}=> Done!${EOL}\n"
 
