@@ -6,13 +6,15 @@ WORKDIR /backend
 
 ENV PYTHONUNBUFFERED=1
 
-COPY api.py pyproject.toml /backend/
+COPY api.py pyproject.toml healthcheck.sh /backend/
 RUN pip install --upgrade --no-cache-dir pip pip-tools && \
     pip-compile --strip-extras && \
     pip-sync && \
     pip uninstall pip-tools -y && \
     pip cache purge && \
     rm requirements.txt pyproject.toml
+
+HEALTHCHECK --interval=60s CMD source /backend/healthcheck.sh
 
 EXPOSE 5555
 

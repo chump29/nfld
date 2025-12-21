@@ -3,3 +3,4 @@ __pycache__
 nfld.sqlite
 README.md
 .venv
+!healthcheck.sh
