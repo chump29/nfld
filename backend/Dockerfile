@@ -4,6 +4,7 @@ FROM python:3.11-alpine
 
 WORKDIR /backend
 
+ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
 COPY api.py pyproject.toml healthcheck.sh /backend/
@@ -18,4 +19,4 @@ HEALTHCHECK --interval=60s CMD source /backend/healthcheck.sh
 
 EXPOSE 5555
 
-CMD ["gunicorn", "api:api", "-b", "0.0.0.0:5555", "-w", "9"]
+CMD ["gunicorn", "api:api", "-b", "0.0.0.0:5555"]

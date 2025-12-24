@@ -1,10 +1,12 @@
 services:
   nfld-frontend:
-    image: nfld-frontend
     container_name: nfld-frontend
+    image: nfld-frontend
     restart: unless-stopped
+    depends_on:
+      - nfld-backend
     ports:
-      - 8888:80
+      - '88:80'
     environment:
       - TZ=America/Chicago
     labels:
@@ -22,29 +24,19 @@ services:
       - homepage.widget.mappings[0].label=Team
       - homepage.widget.mappings[1].field=record
       - homepage.widget.mappings[1].label=Record
+
   nfld-backend:
-    image: nfld-backend
     container_name: nfld-backend
+    image: nfld-backend
     restart: unless-stopped
     ports:
-      - 5555:5555
+      - '5555:5555'
+    labels:
+      - wud.watch=false
+      - dockge.imageupdates.check=false
     stop_signal: SIGINT
-    labels:
-      - wud.watch=false
-      - dockge.imageupdates.check=false
-  nginx:
-    image: nfld-nginx
-    container_name: nfld-nginx
-    restart: unless-stopped
-    ports:
-      - 88:80
-    depends_on:
-      - nfld-backend
-      - nfld-frontend
-    labels:
-      - wud.watch=false
-      - dockge.imageupdates.check=false
 networks: {}
+
 x-dockge:
   urls:
     - https://nfl.postfmly.com

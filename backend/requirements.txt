@@ -5,6 +5,7 @@
 #    pip-compile --extra=dev --strip-extras
 #
 --extra-index-url https://www.piwheels.org/simple
+--trusted-host archive1.piwheels.org
 
 astroid==4.0.2
     # via pylint

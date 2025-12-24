@@ -8,14 +8,11 @@
 ```mermaid
 flowchart LR
 frontend@{shape: rounded, label: "frontend"}
-frontendPort@{shape: rounded, label: "http://localhost:8888"}
+frontendPort@{shape: rounded, label: "http://localhost:88"}
 backend@{shape: rounded, label: "backend (direct)"}
 backendPort@{shape: rounded, label: "http://localhost:5555"}
-nginx@{shape: rounded, label: "nginx (entrypoint)"}
-nginxPort@{shape: rounded, label: "http://localhost:88"}
 frontend-->frontendPort
 backend-->backendPort
-nginx-->nginxPort
 ```
 
 ---
@@ -55,25 +52,4 @@ cd backend && ./build.sh
 
 # Frontend
 cd frontend && ./build.sh
-
-# Nginx
-cd nginx && ./build.sh
-```
-
-# Nginx stuff
-
-```nginx
-server {
-    listen 443 ssl http2;
-    ssl_certificate [certificate].crt;
-    ssl_certificate_key [certificate].key;
-    server_name [sub].[domain].com;
-    location / {
-        proxy_pass http://0.0.0.0:88;
-        proxy_set_header Host $http_host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Host $server_name;
-    }
-}
 ```
