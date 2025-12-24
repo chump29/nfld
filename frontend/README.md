@@ -30,6 +30,8 @@ corepack enable pnpm
 ```bash
 corepack up
 # or
+corepack use pnpm@latest
+# or
 corepack use pnpm@[version]
 ```
 
