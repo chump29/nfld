@@ -13,7 +13,7 @@ export interface ITeam {
   displayName: string
 }
 
-const api_url = import.meta.env.VITE_API_URL
+const api_url = import.meta.env.VITE_API_URL || ""
 
 export default function Selector() {
   const [teamList, setTeamList] = useState([] as ITeam[])
