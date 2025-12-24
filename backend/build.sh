@@ -28,7 +28,7 @@ echo -e "\n${GREEN}=> Deactivating virtual environment...${EOL}\n"
 deactivate
 
 echo -e "${GREEN}=> Creating image...${EOL}\n"
-./Dockerfile
+docker build --tag=nfld-backend .
 
 echo -e "\n${YELLOW}=> Done!${EOL}\n"
 
