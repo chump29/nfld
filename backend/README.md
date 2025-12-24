@@ -19,7 +19,7 @@ port@{shape: comment, label: "&nbsp; Flask exposes port 5555"}
 ```bash
 ./api.py
 # or
-python3 api.py &
+.venv/bin/python3 api.py &
 ```
 
 ### To build standalone Docker image:
