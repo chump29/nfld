@@ -7,21 +7,22 @@ name = "nfld-backend"
 version = "1.0.0"
 description = "NFL team schedule picker (Backend)"
 license = "GPL-3.0-only"
-license-files = ["LICENSE.md"]
 authors = [
     {name = "Chris Post"}
 ]
-keywords = ["NFL", "schedule"]
-readme = "README.md"
+keywords = ["NFL", "team", "schedule"]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
-    "Environment :: Web Environment",
+    "Environment :: Web Environment :: Mozilla",
     "Framework :: Flask",
     "Intended Audience :: End Users/Desktop",
     "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
     "Natural Language :: English",
+    "Operating System :: POSIX :: Linux",
     "Private :: Do Not Upload",
-    "Programming Language :: Python :: 3.11"
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
+    "Typing :: Typed"
 ]
 dependencies = [
     "flask",
@@ -30,7 +31,6 @@ dependencies = [
     "requests_cache"
 ]
 requires-python = ">= 3.11"
-dynamic = ["version"]
 
 [project.urls]
 GitHub = "https://github.com/chump29/nfld"

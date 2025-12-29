@@ -17,7 +17,23 @@ port@{shape: comment, label: "&nbsp; Nginx exposes port 80"}
 
 ---
 
-# PNPM stuff
+## Node.js stuff
+
+### To select/delete version:
+
+```bash
+sudo n
+```
+
+### To install version:
+
+```bash
+sudo n [version]
+```
+
+---
+
+## NPM stuff
 
 ### To enable PNPM:
 
@@ -134,18 +150,4 @@ pnpm run test # not interactive
 
 ```bash
 pnpm run [script]
-```
-
-# Node.js stuff
-
-### To select/delete version:
-
-```bash
-sudo n
-```
-
-### To install version:
-
-```bash
-sudo n [version]
 ```

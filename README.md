@@ -3,7 +3,9 @@
 * Choose an NFL team and the season schedule
 * Full NFL schedule information will be displayed
 
-# Compose flowchart
+---
+
+## Compose flowchart
 
 ```mermaid
 flowchart LR
@@ -17,7 +19,7 @@ backend-->backendPort
 
 ---
 
-# Development stuff
+## Development stuff
 
 ### Backend:
 
@@ -39,7 +41,9 @@ pnpm i
 pnpm run build:dev
 ```
 
-# Docker stuff
+---
+
+## Docker stuff
 
 ### To build images:
 

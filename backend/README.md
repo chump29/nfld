@@ -12,7 +12,7 @@ port@{shape: comment, label: "&nbsp; Flask exposes port 5555"}
 
 ---
 
-# NFLd stuff
+## API stuff
 
 ### To run `api.py`:
 
@@ -30,7 +30,7 @@ port@{shape: comment, label: "&nbsp; Flask exposes port 5555"}
 ./Dockerfile
 ```
 
-# Python stuff
+## Python stuff
 
 ### Virtual environment:
 
