@@ -13,7 +13,7 @@ REGULAR_SEASON = "2"
 
 
 @given("that a user wants a team schedule")
-def step_impl(context):
+def step_impl(_):
     pass
 
 

@@ -8,7 +8,7 @@ from api import get_teams
 
 
 @given("that a user wants a listing of all teams")
-def step_impl(context):
+def step_impl(_):
     pass
 
 

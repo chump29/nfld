@@ -2,7 +2,7 @@
 
 """API Service"""
 
-from datetime import datetime
+# from datetime import datetime
 from requests import RequestException
 
 from flask import Flask
@@ -33,7 +33,8 @@ def get_url(url):
 def get_schedule(team: str, season: str):
     """Returns team schedule"""
     response = get_url(
-        f"https://site.web.api.espn.com/apis/site/v2/sports/football/nfl/teams/{team}/schedule?region=us&lang=en&season={datetime.now().year}&seasontype={season}"  # pylint: disable=line-too-long
+        # f"https://site.web.api.espn.com/apis/site/v2/sports/football/nfl/teams/{team}/schedule?region=us&lang=en&season={datetime.now().year}&seasontype={season}"  # pylint: disable=line-too-long
+        f"https://site.web.api.espn.com/apis/site/v2/sports/football/nfl/teams/{team}/schedule?region=us&lang=en&season=2025&seasontype={season}"  # pylint: disable=line-too-long
     )
     schedule = {}
     if response:
