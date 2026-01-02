@@ -14,7 +14,7 @@ services:
       - dockge.imageupdates.check=false
       - homepage.group=Personal
       - homepage.name=NFLd
-      - homepage.icon=https://nfl.postfmly.com/favicon.png
+      - homepage.icon=https://nfl.postfmly.com/nfld.png
       - homepage.href=https://nfl.postfmly.com/
       - homepage.description=nfl.postfmly.com
       - homepage.widget.type=customapi
