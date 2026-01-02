@@ -6,6 +6,8 @@ from behave import given, when, then
 
 from api import get_teams
 
+TEAM = "KC"
+
 
 @given("that a user wants a listing of all teams")
 def step_impl(_):
@@ -23,12 +25,12 @@ def step_impl(context):
     assert len(context.teams) > 0, "Empty JSON response"
 
 
-@then("KC team is found")
+@then("team is found")
 def step_impl(context):
     found = False
     for team in context.teams:
-        if team["team"]["abbreviation"] == "KC":
+        if team["team"]["abbreviation"] == TEAM:
             found = True
             break
     if not found:
-        raise AssertionError("KC not found")
+        raise AssertionError("Team not found")

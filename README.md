@@ -1,6 +1,6 @@
 # ![NFLd logo](/frontend/public/nfld.png) NFLd
 
-* Choose an NFL team and the season schedule
+* Choose an NFL team, year, and season schedule
 * Full NFL schedule information will be displayed
 
 ---

@@ -4,9 +4,11 @@
 flowchart
 api@{shape: rect, label: "/api"}
 teams@{shape: fr-rect, label: "/teams"}
-schedule[["`/schedule/*[team]*/*[season]*`"]]
-api-->teams
+schedule[["`/schedule/*[team]*/*[year]*/*[season]*`"]]
+version@{shape: fr-rect, label: "/version"}
 api-->schedule
+api-->teams
+api-->version
 port@{shape: comment, label: "&nbsp; Flask exposes port 5555"}
 ```
 

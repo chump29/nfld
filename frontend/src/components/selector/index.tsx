@@ -16,14 +16,17 @@ export interface ITeam {
 const api_url = import.meta.env.VITE_API_URL || ""
 
 export default function Selector() {
-  const [teamList, setTeamList] = useState([] as ITeam[])
+  const [teamList, setTeamList] = useState<ITeam[]>([])
+  const [yearList, setYearList] = useState<number[]>([])
   const [teamSelected, setTeamSelected] = useState<string>("")
+  const [yearSelected, setYearSelected] = useState<number>(0)
   const [seasonSelected, setSeasonSelected] = useState<string>("")
 
   const isValid = (): boolean => {
     return (
       teamSelected.length > 0 &&
       teamSelected !== "0" &&
+      yearSelected > 0 &&
       seasonSelected.length > 0 &&
       seasonSelected !== "0"
     )
@@ -31,6 +34,11 @@ export default function Selector() {
 
   const handleTeamChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setTeamSelected(e.target.value)
+    e.target.blur()
+  }
+
+  const handleYearChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    setYearSelected(+e.target.value)
     e.target.blur()
   }
 
@@ -59,6 +67,11 @@ export default function Selector() {
       .catch((error: AxiosError) => {
         console.error(error.message)
       })
+    const years: number[] = []
+    for (let year = new Date().getFullYear(); year >= 2000; year--) {
+      years.push(year)
+    }
+    setYearList(years)
   }, [api_url])
 
   return (
@@ -83,6 +96,22 @@ export default function Selector() {
           </Form.Select>
         </Form.Group>
         <Form.Group className="mb-3">
+          <Form.Label className="fs-5 fw-bold">Year</Form.Label>
+          <Form.Select
+            onChange={handleYearChange}
+            value={yearSelected}
+            size="lg">
+            <option className="firstOption" key="0" value="0">
+              Choose a year...
+            </option>
+            {yearList.map((year: number) => (
+              <option key={year} value={year}>
+                {year}
+              </option>
+            ))}
+          </Form.Select>
+        </Form.Group>
+        <Form.Group className="mb-3">
           <Form.Label className="fs-5 fw-bold">Schedule</Form.Label>
           <Form.Select
             onChange={handleSeasonChange}
@@ -101,7 +130,11 @@ export default function Selector() {
         </Form.Group>
       </Form>
       {isValid() ? (
-        <Display teamSelected={teamSelected} seasonSelected={seasonSelected} />
+        <Display
+          teamSelected={teamSelected}
+          yearSelected={yearSelected.toString()}
+          seasonSelected={seasonSelected}
+        />
       ) : null}
     </>
   )

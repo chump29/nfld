@@ -13,7 +13,7 @@ RUN pip install --upgrade --no-cache-dir pip pip-tools && \
     pip-sync && \
     pip uninstall pip-tools -y && \
     pip cache purge && \
-    rm requirements.txt pyproject.toml
+    rm requirements.txt
 
 HEALTHCHECK --interval=60s CMD source /backend/healthcheck.sh
 

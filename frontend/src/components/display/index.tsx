@@ -5,6 +5,7 @@ import axios, { AxiosError, type AxiosResponse } from "axios"
 import Bye from "../bye"
 import Week from "../week"
 
+import "bootstrap-icons/font/bootstrap-icons.css"
 import "./index.css"
 
 export interface ISchedule {
@@ -51,20 +52,32 @@ const api_url = import.meta.env.VITE_API_URL || ""
 
 export default function Display({
   teamSelected,
+  yearSelected,
   seasonSelected
 }: {
   teamSelected: string
+  yearSelected: string
   seasonSelected: string
 }) {
   const [schedule, setSchedule] = useState([] as ISchedule[])
-  const [season, setSeason] = useState<string>("N/A")
   const [scheduleType, setScheduleType] = useState<string>("N/A")
-  const [isVisible, setIsVisible] = useState<boolean>(false)
+  const [isVisible, setIsVisible] = useState<boolean>(true)
+  const [noData, setNoData] = useState<boolean>(false)
 
   useEffect(() => {
     axios
-      .get(api_url + "/api/schedule/" + teamSelected + "/" + seasonSelected)
+      .get(
+        api_url +
+          "/api/schedule/" +
+          teamSelected +
+          "/" +
+          yearSelected +
+          "/" +
+          seasonSelected
+      )
       .then((response: AxiosResponse) => {
+        setScheduleType(schedules[seasonSelected])
+        setNoData(!response.data.length)
         const schedule: ISchedule[] = []
         let week = 0
         /* eslint-disable  @typescript-eslint/no-explicit-any */
@@ -116,8 +129,6 @@ export default function Display({
               : competitions.status.type.description,
             id: d.id
           } as ISchedule)
-          setSeason(d.season.displayName)
-          setScheduleType(schedules[seasonSelected])
         })
         setSchedule(schedule)
         setIsVisible(true)
@@ -125,7 +136,7 @@ export default function Display({
       .catch((error: AxiosError) => {
         console.error(error.message)
       })
-  }, [teamSelected, seasonSelected, api_url])
+  }, [teamSelected, yearSelected, seasonSelected, api_url])
 
   return (
     <div className="container">
@@ -133,8 +144,14 @@ export default function Display({
         <div className="card">
           <div className="card-body">
             <h2 className="card-title text-center">
-              {season} {scheduleType} Schedule
+              {yearSelected} {scheduleType} Schedule
             </h2>
+            {noData ? (
+              <div className="text-center fs-3 fw-bold mt-5">
+                <i className="bi bi-exclamation-diamond h4 nodata"></i> &nbsp;
+                No schedule data yet for {yearSelected}
+              </div>
+            ) : null}
             {schedule.map((data: ISchedule) => (
               <div className="card" key={data.id}>
                 <div className="card-body">

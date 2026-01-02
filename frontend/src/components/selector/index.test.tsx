@@ -6,10 +6,8 @@ import Selector from "."
 vi.spyOn(console, "error").mockImplementation(() => undefined)
 
 beforeEach(() => {
-  // TODO
   const response = {} as AxiosResponse
   vi.spyOn(axios, "get").mockResolvedValue(response)
-
   render(<Selector />)
 })
 
@@ -25,6 +23,13 @@ describe("Selector", () => {
     expect(
       screen.queryByRole("option", { name: /Choose a team/ }),
       "Team dropdown not found"
+    ).toBeInTheDocument()
+  })
+
+  it("should display year dropdown", () => {
+    expect(
+      screen.queryByRole("option", { name: /Choose a year/ }),
+      "Year dropdown not found"
     ).toBeInTheDocument()
   })
 
