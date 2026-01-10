@@ -7,7 +7,7 @@
 --extra-index-url https://www.piwheels.org/simple
 --trusted-host archive1.piwheels.org
 
-astroid==4.0.2
+astroid==4.0.3
     # via pylint
 attrs==25.4.0
     # via
@@ -19,7 +19,7 @@ blinker==1.9.0
     # via flask
 cattrs==25.3.0
     # via requests-cache
-certifi==2025.11.12
+certifi==2026.1.4
     # via requests
 charset-normalizer==3.4.4
     # via requests
@@ -91,11 +91,11 @@ typing-extensions==4.15.0
     # via cattrs
 url-normalize==2.2.1
     # via requests-cache
-urllib3==2.6.2
+urllib3==2.6.3
     # via
     #   requests
     #   requests-cache
-werkzeug==3.1.4
+werkzeug==3.1.5
     # via flask
 
 # The following packages are considered to be unsafe in a requirements file:
