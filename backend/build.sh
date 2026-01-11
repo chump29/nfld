@@ -16,7 +16,7 @@ _done="✔️ "
 
 clear
 
-echo -e "${_title} ${_red}BACKEND${_nc} ${_title}\n\n"
+echo -e "${_title} ${_red}NFLd BACKEND${_nc} ${_title}\n\n"
 
 echo -e "${_start} ${_green}Activating virtual environment${_nc}\n"
 source .venv/bin/activate
