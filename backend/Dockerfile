@@ -15,7 +15,7 @@ RUN pip install --upgrade --no-cache-dir pip pip-tools && \
     pip cache purge && \
     rm requirements.txt
 
-HEALTHCHECK --interval=60s CMD source /backend/healthcheck.sh
+HEALTHCHECK --interval=60s --start-period=5s CMD source /backend/healthcheck.sh
 
 EXPOSE 5555
 

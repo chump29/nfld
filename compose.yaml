@@ -4,9 +4,10 @@ services:
     image: nfld-frontend
     restart: unless-stopped
     depends_on:
-      - nfld-backend
+      nfld-backend:
+        condition: service_healthy
     ports:
-      - '88:80'
+      - "88:80"
     environment:
       - TZ=America/Chicago
     labels:
@@ -18,7 +19,7 @@ services:
       - homepage.href=https://nfl.postfmly.com/
       - homepage.description=nfl.postfmly.com
       - homepage.widget.type=customapi
-      - homepage.widget.url=https://api.postfmly.com/nfld/kc
+      - homepage.widget.url=https://api.postfmly.com/nfld/kc/2025
       - homepage.widget.refreshInterval=60000
       - homepage.widget.mappings[0].field=team
       - homepage.widget.mappings[0].label=Team
@@ -30,7 +31,7 @@ services:
     image: nfld-backend
     restart: unless-stopped
     ports:
-      - '5555:5555'
+      - "5555:5555"
     labels:
       - wud.watch=false
       - dockge.imageupdates.check=false
