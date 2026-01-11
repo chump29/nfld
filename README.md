@@ -1,4 +1,4 @@
-# ![NFLd logo](/frontend/public/nfld.png) NFLd
+# <img src="./frontend/public/nfld.png" title="NFLd logo" height="64" /> NFLd
 
 * Choose an NFL team, year, and season schedule
 * Full NFL schedule information will be displayed
