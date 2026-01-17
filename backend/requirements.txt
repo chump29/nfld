@@ -85,7 +85,7 @@ six==1.17.0
     # via
     #   behave
     #   parse-type
-tomlkit==0.13.3
+tomlkit==0.14.0
     # via pylint
 typing-extensions==4.15.0
     # via cattrs

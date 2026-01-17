@@ -2,6 +2,7 @@
 
 """API Service"""
 
+from html import escape
 from os import environ, getenv
 from tomllib import load
 from requests import RequestException
@@ -62,7 +63,7 @@ def get_version():
         with open(file="pyproject.toml", mode="rb") as pyproject:
             version = load(pyproject)["project"]["version"]
             environ["BACKEND_VERSION"] = version
-    return version
+    return escape(str(version))
 
 
 if __name__ == "__main__":
