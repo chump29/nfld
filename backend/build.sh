@@ -6,7 +6,6 @@ _yellow="\e[4;93m"
 _nc="\e[0m"
 _title=✨
 _start=🟢
-_gather="⛏️ "
 _task="🛠️ "
 _lint=🔍
 _test=🧪
@@ -21,11 +20,8 @@ echo -e "${_title} ${_red}NFLd BACKEND${_nc} ${_title}\n"
 echo -e "${_start} ${_green}Activating virtual environment${_nc}\n"
 source .venv/bin/activate
 
-echo -e "${_gather} ${_green}Gathering dependencies${_nc}\n"
-pip-compile --extra dev --quiet --strip-extras
-
 echo -e "${_task} ${_green}Installing dependencies${_nc}\n"
-pip-sync --quiet
+uv sync --extra dev --quiet
 
 echo -e "${_lint} ${_green}Linting${_nc}:"
 ./lint.sh
@@ -47,7 +43,6 @@ unset _yellow
 unset _nc
 unset _title
 unset _start
-unset _gather
 unset _task
 unset _lint
 unset _test

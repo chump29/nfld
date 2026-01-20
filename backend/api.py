@@ -7,10 +7,11 @@ from os import environ, getenv
 from tomllib import load
 from requests import RequestException
 
-from flask import Flask
+from fastapi import FastAPI
 from requests_cache import CachedSession
+from uvicorn import run
 
-api = Flask(__name__)
+api = FastAPI()
 
 session = CachedSession(
     "nfld", expire_after=86400, allowable_codes=[200], allowable_methods=["GET"]
@@ -31,7 +32,7 @@ def get_url(url):
         return None
 
 
-@api.route("/api/schedule/<team>/<year>/<season>", methods=["GET"])
+@api.get("/api/schedule/{team}/{year}/{season}")
 def get_schedule(team: str, year: str, season: str):
     """Returns team schedule"""
     response = get_url(
@@ -43,7 +44,7 @@ def get_schedule(team: str, year: str, season: str):
     return schedule
 
 
-@api.route("/api/teams", methods=["GET"])
+@api.get("/api/teams")
 def get_teams():
     """Returns all teams"""
     response = get_url(
@@ -55,7 +56,7 @@ def get_teams():
     return teams
 
 
-@api.route("/api/version", methods=["GET"])
+@api.get("/api/version")
 def get_version():
     """Returns version"""
     version = getenv("BACKEND_VERSION")
@@ -67,4 +68,4 @@ def get_version():
 
 
 if __name__ == "__main__":
-    api.run(host="0.0.0.0", port=5555)
+    run(app="api:api", host="0.0.0.0", port=5555, reload=True)

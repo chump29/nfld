@@ -1,6 +1,6 @@
 [build-system]
-requires = ["setuptools"]
-build-backend = "setuptools.build_meta"
+requires = ["uv_build >= 0.9, < 0.10"]
+build-backend = "uv_build"
 
 [project]
 name = "nfld-backend"
@@ -14,31 +14,44 @@ keywords = ["NFL", "team", "schedule"]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Environment :: Web Environment :: Mozilla",
-    "Framework :: Flask",
+    "Framework :: FastAPI",
     "Intended Audience :: End Users/Desktop",
     "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
     "Natural Language :: English",
     "Operating System :: POSIX :: Linux",
     "Private :: Do Not Upload",
-    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.14",
     "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
     "Typing :: Typed"
 ]
 dependencies = [
-    "flask",
-    "gunicorn",
+    "fastapi[standard-no-fastapi-cloud-cli]>=0.127.0",
     "requests",
     "requests_cache"
 ]
-requires-python = ">= 3.11"
+requires-python = ">= 3.14"
 
 [project.urls]
 GitHub = "https://github.com/chump29/nfld"
 
 [project.optional-dependencies]
 dev = [
-    "behave",
-    "pip-review",
-    "pip3-autoremove",
-    "pylint"
+    "behave>=1.3.3",
+    "pip-review>=1.3.0",
+    "pylint>=4.0.4"
+]
+
+[tool.uv]
+python-downloads = "manual"
+
+[tool.uv.build-backend]
+namespace = true
+source-exclude = [
+    ".dockerignore",
+    ".python-version",
+    "*.sh",
+    "/features",
+    "Dockerfile",
+    "README.md",
+    "uv.lock"
 ]

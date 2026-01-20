@@ -1,0 +1,23 @@
+@host = http://localhost:5555/api/
+
+###
+
+// Get API version
+
+GET {{host}}version
+
+###
+
+// Get all teams
+
+GET {{host}}teams
+
+###
+
+// Get team schedule
+
+@team = kc
+@year = 2025
+@season = 2
+
+GET {{host}}schedule/{{team}}/{{year}}/{{season}}
