@@ -24,14 +24,3 @@ div#d {
   position: relative;
   left: -50px;
 }
-
-.move {
-  position: relative;
-  left: -20px;
-}
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-  .move {
-    position: relative !important;
-    left: -10px !important;
-  }
-}
