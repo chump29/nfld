@@ -9,7 +9,7 @@ import "bootstrap/dist/css/bootstrap.min.css"
 
 const api_url = import.meta.env.VITE_API_URL || ""
 
-function getVersion(version: string): string {
+const getVersion = (version: string): string => {
   return version.length ? `v${version}` : "N/A"
 }
 

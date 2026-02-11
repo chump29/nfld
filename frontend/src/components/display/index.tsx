@@ -29,7 +29,7 @@ const days: string[] = [
   "Saturday"
 ] as const
 
-function getOrdinal(number: number): string {
+const getOrdinal = (number: number): string => {
   return number > 0
     ? ["th", "st", "nd", "rd"][
         (number > 3 && number < 21) || number % 10 > 3 ? 0 : number % 10

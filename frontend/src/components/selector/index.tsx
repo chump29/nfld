@@ -18,7 +18,7 @@ export default function Selector(): JSX.Element {
   const [yearSelected, setYearSelected] = useState<number>(0)
   const [seasonSelected, setSeasonSelected] = useState<string>("")
 
-  function isValid(): boolean {
+  const isValid = (): boolean => {
     return (
       teamSelected.length > 0 &&
       teamSelected !== "0" &&
@@ -28,17 +28,17 @@ export default function Selector(): JSX.Element {
     )
   }
 
-  function handleTeamChange(e: ChangeEvent<HTMLSelectElement>): void {
+  const handleTeamChange = (e: ChangeEvent<HTMLSelectElement>): void => {
     setTeamSelected(e.target.value)
     e.target.blur()
   }
 
-  function handleYearChange(e: ChangeEvent<HTMLSelectElement>): void {
+  const handleYearChange = (e: ChangeEvent<HTMLSelectElement>): void => {
     setYearSelected(+e.target.value)
     e.target.blur()
   }
 
-  function handleSeasonChange(e: ChangeEvent<HTMLSelectElement>): void {
+  const handleSeasonChange = (e: ChangeEvent<HTMLSelectElement>): void => {
     setSeasonSelected(e.target.value)
     e.target.blur()
   }
