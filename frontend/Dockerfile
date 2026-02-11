@@ -28,9 +28,8 @@ LABEL org.opencontainers.image.authors="chris@postfmly.com" \
     org.opencontainers.image.title="NFLd (Frontend)" \
     org.opencontainers.image.url="https://github.com/chump29/nfld"
 
-# hadolint ignore=DL3018,DL3019
-RUN apk --update-cache upgrade && \
-    apk add tzdata && \
+# hadolint ignore=DL3018
+RUN apk add --no-cache tzdata && \
     rm -rf /usr/share/nginx/html/*
 
 WORKDIR /usr/share/nginx/html
