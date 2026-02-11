@@ -25,7 +25,9 @@ jobs:
         with:
           node-version: ${{env.NODE_VERSION}}
 
-      - run: pwd
+      - run: |
+          pwd
+          ls
 
       - name: Install PNPM
         uses: pnpm/action-setup@v4
@@ -48,7 +50,9 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v6
 
-      - run: pwd
+      - run: |
+          pwd
+          ls
 
       - name: Install Python
         uses: actions/setup-python@v6
