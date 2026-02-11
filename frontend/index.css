@@ -1,3 +1,7 @@
+body {
+  padding-top: 10px;
+}
+
 div#logo {
   position: relative;
   float: left;
@@ -12,12 +16,12 @@ div#d {
 
 .blue {
   color: #013369;
-  -webkit-text-stroke: 1px #ffffff;
+  -webkit-text-stroke: 1px #fff;
 }
 
 .red {
   color: #d50a0a;
-  text-shadow: 3px 3px 6px #000000;
+  text-shadow: 3px 3px 6px #000;
 }
 
 .nfld {

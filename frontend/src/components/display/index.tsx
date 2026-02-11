@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, type JSX } from "react"
 
 import axios, { AxiosError, type AxiosResponse } from "axios"
 
+import { type ITeamDTO } from "../../helpers/interfaces"
+import { schedules } from "../../helpers/schedules"
 import Bye from "../bye"
 import Week from "../week"
 
@@ -11,20 +13,13 @@ import "./index.css"
 export interface ISchedule {
   date: string
   week: string
-  teams: ITeam[]
+  teams: ITeamDTO[]
   venue: string
   status: string
   id: string
 }
 
-interface ITeam {
-  record: string
-  score: string
-  name: string
-  logo: string
-}
-
-const days = [
+const days: string[] = [
   "Sunday",
   "Monday",
   "Tuesday",
@@ -32,15 +27,9 @@ const days = [
   "Thursday",
   "Friday",
   "Saturday"
-]
+] as const
 
-/* eslint-disable  @typescript-eslint/no-explicit-any */
-const schedules: any = {
-  "1": "Preseason",
-  "2": "Regular Season"
-}
-
-const getOrdinal = (number: number) => {
+function getOrdinal(number: number): string {
   return number > 0
     ? ["th", "st", "nd", "rd"][
         (number > 3 && number < 21) || number % 10 > 3 ? 0 : number % 10
@@ -48,7 +37,7 @@ const getOrdinal = (number: number) => {
     : ""
 }
 
-const api_url = import.meta.env.VITE_API_URL || ""
+const api_url: string = import.meta.env.VITE_API_URL || ""
 
 export default function Display({
   teamSelected,
@@ -57,8 +46,8 @@ export default function Display({
 }: {
   teamSelected: string
   yearSelected: string
-  seasonSelected: string
-}) {
+  seasonSelected: number
+}): JSX.Element {
   const [schedule, setSchedule] = useState([] as ISchedule[])
   const [scheduleType, setScheduleType] = useState<string>("N/A")
   const [isVisible, setIsVisible] = useState<boolean>(true)
@@ -73,7 +62,7 @@ export default function Display({
           "/" +
           yearSelected +
           "/" +
-          seasonSelected
+          (seasonSelected + 1)
       )
       .then((response: AxiosResponse) => {
         setScheduleType(schedules[seasonSelected])
@@ -82,17 +71,17 @@ export default function Display({
         let week = 0
         /* eslint-disable  @typescript-eslint/no-explicit-any */
         response.data.forEach((d: any) => {
-          if (++week !== d.week.number && seasonSelected === "2") {
+          if (++week !== d.week.number && seasonSelected === 2) {
             schedule.push({
               date: "",
-              week: `Week ${week++}`,
+              week: `${seasonSelected === 2 ? "Round" : "Week"} ${week++}`,
               teams: [],
               venue: "",
               status: "",
               id: `${d.id}.1`
             })
           }
-          const teams = [] as ITeam[]
+          const teams = [] as ITeamDTO[]
           /* eslint-disable  @typescript-eslint/no-explicit-any */
           d.competitions[0].competitors.forEach((c: any) => {
             teams.push({
@@ -136,7 +125,7 @@ export default function Display({
       .catch((error: AxiosError) => {
         console.error(error.message)
       })
-  }, [teamSelected, yearSelected, seasonSelected, api_url])
+  }, [teamSelected, yearSelected, seasonSelected])
 
   return (
     <div className="container">
@@ -149,11 +138,11 @@ export default function Display({
             {noData ? (
               <div className="text-center fs-3 fw-bold mt-5">
                 <i className="bi bi-exclamation-diamond h4 nodata"></i> &nbsp;
-                No schedule data yet for {yearSelected}
+                No {scheduleType} data for {yearSelected}
               </div>
             ) : null}
             {schedule.map((data: ISchedule) => (
-              <div className="card" key={data.id}>
+              <div key={data.id} className="card">
                 <div className="card-body">
                   <div className="row row-list">
                     {!data.teams.length ? <Bye /> : <Week data={data} />}

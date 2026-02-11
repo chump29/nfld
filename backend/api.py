@@ -33,7 +33,7 @@ def get_url(url):
 
 
 @api.get("/api/schedule/{team}/{year}/{season}")
-def get_schedule(team: str, year: str, season: str):
+def get_schedule(team: str, year: str, season: int):
     """Returns team schedule"""
     response = get_url(
         f"https://site.web.api.espn.com/apis/site/v2/sports/football/nfl/teams/{team}/schedule?region=us&lang=en&season={year}&seasontype={season}"  # pylint: disable=line-too-long

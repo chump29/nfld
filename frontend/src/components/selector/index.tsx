@@ -1,48 +1,44 @@
-import { useEffect, useState, type ChangeEvent } from "react"
+import { useEffect, useState, type ChangeEvent, type JSX } from "react"
 import Form from "react-bootstrap/Form"
 
 import axios, { AxiosError, type AxiosResponse } from "axios"
 
+import { type ITeam } from "../../helpers/interfaces"
+import { schedules } from "../../helpers/schedules"
 import Display from "../display"
 
 import "./index.css"
 
-export interface ITeam {
-  id: string
-  abbreviation: string
-  displayName: string
-}
+const api_url: string = import.meta.env.VITE_API_URL || ""
 
-const api_url = import.meta.env.VITE_API_URL || ""
-
-export default function Selector() {
+export default function Selector(): JSX.Element {
   const [teamList, setTeamList] = useState<ITeam[]>([])
   const [yearList, setYearList] = useState<number[]>([])
   const [teamSelected, setTeamSelected] = useState<string>("")
   const [yearSelected, setYearSelected] = useState<number>(0)
   const [seasonSelected, setSeasonSelected] = useState<string>("")
 
-  const isValid = (): boolean => {
+  function isValid(): boolean {
     return (
       teamSelected.length > 0 &&
       teamSelected !== "0" &&
       yearSelected > 0 &&
       seasonSelected.length > 0 &&
-      seasonSelected !== "0"
+      seasonSelected !== "-1"
     )
   }
 
-  const handleTeamChange = (e: ChangeEvent<HTMLSelectElement>) => {
+  function handleTeamChange(e: ChangeEvent<HTMLSelectElement>): void {
     setTeamSelected(e.target.value)
     e.target.blur()
   }
 
-  const handleYearChange = (e: ChangeEvent<HTMLSelectElement>) => {
+  function handleYearChange(e: ChangeEvent<HTMLSelectElement>): void {
     setYearSelected(+e.target.value)
     e.target.blur()
   }
 
-  const handleSeasonChange = (e: ChangeEvent<HTMLSelectElement>) => {
+  function handleSeasonChange(e: ChangeEvent<HTMLSelectElement>): void {
     setSeasonSelected(e.target.value)
     e.target.blur()
   }
@@ -72,20 +68,20 @@ export default function Selector() {
       years.push(year)
     }
     setYearList(years)
-  }, [api_url])
+  }, [teamSelected, yearSelected, seasonSelected])
 
   return (
     <>
       <Form>
         <Form.Group className="mb-3">
-          <Form.Label className="fs-5 fw-bold" aria-label="title">
+          <Form.Label aria-label="title" className="fs-5 fw-bold">
             NFL Team
           </Form.Label>
           <Form.Select
-            onChange={handleTeamChange}
+            size="lg"
             value={teamSelected}
-            size="lg">
-            <option className="firstOption" key="0" value="0">
+            onChange={handleTeamChange}>
+            <option key="0" className="first-option" value="0">
               Choose a team...
             </option>
             {teamList.map((data: ITeam) => (
@@ -98,10 +94,10 @@ export default function Selector() {
         <Form.Group className="mb-3">
           <Form.Label className="fs-5 fw-bold">Year</Form.Label>
           <Form.Select
-            onChange={handleYearChange}
+            size="lg"
             value={yearSelected}
-            size="lg">
-            <option className="firstOption" key="0" value="0">
+            onChange={handleYearChange}>
+            <option key="0" className="first-option" value="0">
               Choose a year...
             </option>
             {yearList.map((year: number) => (
@@ -114,26 +110,25 @@ export default function Selector() {
         <Form.Group className="mb-3">
           <Form.Label className="fs-5 fw-bold">Schedule</Form.Label>
           <Form.Select
-            onChange={handleSeasonChange}
+            size="lg"
             value={seasonSelected}
-            size="lg">
-            <option className="firstOption" key="0" value="0">
+            onChange={handleSeasonChange}>
+            <option key="-1" className="first-option" value="-1">
               Choose a schedule...
             </option>
-            <option key="1" value="1">
-              Preseason
-            </option>
-            <option key="2" value="2">
-              Regular Season
-            </option>
+            {schedules.map((schedule: string, i: number) => (
+              <option key={i} value={i}>
+                {schedule}
+              </option>
+            ))}
           </Form.Select>
         </Form.Group>
       </Form>
       {isValid() ? (
         <Display
+          seasonSelected={Number(seasonSelected)}
           teamSelected={teamSelected}
           yearSelected={yearSelected.toString()}
-          seasonSelected={seasonSelected}
         />
       ) : null}
     </>

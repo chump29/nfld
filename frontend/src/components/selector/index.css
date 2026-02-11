@@ -1,4 +1,4 @@
-.firstOption {
+.first-option {
   font-weight: bold;
   font-style: italic;
 }
@@ -9,5 +9,5 @@ form {
 
 label {
   color: #d50a0a;
-  text-shadow: 2px 2px #000000;
+  text-shadow: 2px 2px #000;
 }

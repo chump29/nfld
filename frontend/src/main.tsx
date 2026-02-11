@@ -6,11 +6,10 @@ import axios, { AxiosError, type AxiosResponse } from "axios"
 import Dashboard from "./components/dashboard"
 
 import "bootstrap/dist/css/bootstrap.min.css"
-import "./main.css"
 
 const api_url = import.meta.env.VITE_API_URL || ""
 
-function getVersion(version: string) {
+function getVersion(version: string): string {
   return version.length ? `v${version}` : "N/A"
 }
 

@@ -3,17 +3,19 @@ img {
   height: 75px;
 }
 
-.recordL {
+.record-l {
   float: left;
   display: block;
+
   sup {
     display: block;
     margin-top: 3px;
   }
 }
 
-.recordR {
+.record-r {
   float: right;
+
   sup {
     display: block;
     margin-top: 3px;

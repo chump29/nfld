@@ -1,0 +1,6 @@
+cd frontend
+
+pnpm run precommit
+pnpm run test
+
+#exit 1

@@ -1,7 +1,7 @@
 services:
   nfld-frontend:
     container_name: nfld-frontend
-    image: nfld-frontend
+    image: git.postfmly.com/admin/nfld-frontend
     restart: unless-stopped
     depends_on:
       - nfld-backend
@@ -10,8 +10,7 @@ services:
     environment:
       - TZ=America/Chicago
     labels:
-      - wud.watch=false
-      - dockge.imageupdates.check=false
+      - wud.display.name=NFLd (Frontend)
       - homepage.group=Personal
       - homepage.name=NFLd
       - homepage.icon=https://nfl.postfmly.com/nfld.png
@@ -27,14 +26,14 @@ services:
 
   nfld-backend:
     container_name: nfld-backend
-    image: nfld-backend
+    image: git.postfmly.com/admin/nfld-backend
     restart: unless-stopped
     ports:
       - "5555:5555"
     labels:
-      - wud.watch=false
-      - dockge.imageupdates.check=false
+      - wud.display.name=NFLd (Backend)
     stop_signal: SIGINT
+
 networks: {}
 
 x-dockge:

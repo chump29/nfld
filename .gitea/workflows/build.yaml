@@ -1,0 +1,141 @@
+name: Build NFLd
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: 24
+
+jobs:
+  check-frontend:
+    runs-on: amd64
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - run: cd frontend
+
+      - name: Install Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: ${{env.NODE_VERSION}}
+
+      - name: Install PNPM
+        uses: pnpm/action-setup@v4
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Linting
+        run: pnpm run lint
+
+      - name: Testing
+        run: pnpm run test
+
+  check-backend:
+    runs-on: amd64
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - run: cd backend
+
+      - name: Install Python
+        uses: actions/setup-python@v6
+        with:
+          python-version-file: .python-version
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+
+      - name: Install dependencies
+        run: uv sync --extra dev
+
+      - name: Linting
+        run: uv run pylint api.py
+
+      - name: Testing
+        run: uv run behave --stop
+
+  amd64:
+    needs: [check-frontend, check-backend]
+    runs-on: amd64
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Log into repository
+        uses: docker/login-action@v3
+        with:
+          registry: git.postfmly.com
+          username: admin
+          password: ${{ secrets.PASSWORD }}
+
+      - name: Build and push frontend
+        run: |
+          cd frontend
+          docker buildx build --platform linux/amd64 --tag git.postfmly.com/admin/nfld-frontend:amd64 --push .
+
+      - name: Build and push backend
+        run: |
+          cd backend
+          docker buildx build --platform linux/amd64 --tag git.postfmly.com/admin/nfld-backend:amd64 --push .
+
+  arm64:
+    needs: [check-frontend, check-backend]
+    runs-on: arm64
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Log into repository
+        uses: docker/login-action@v3
+        with:
+          registry: git.postfmly.com
+          username: admin
+          password: ${{ secrets.PASSWORD }}
+
+      - name: Build and push frontend
+        run: |
+          cd frontend
+          docker buildx build --platform linux/amd64 --tag git.postfmly.com/admin/nfld-frontend:amd64 --push .
+
+      - name: Build and push backend
+        run: |
+          cd backend
+          docker buildx build --platform linux/amd64 --tag git.postfmly.com/admin/nfld-backend:amd64 --push .
+
+  manifest:
+    needs: [amd64, arm64]
+    runs-on: amd64
+    steps:
+      - name: Log into repository
+        uses: docker/login-action@v3
+        with:
+          registry: git.postfmly.com
+          username: admin
+          password: ${{ secrets.PASSWORD }}
+
+      - name: Create frontend manifest
+        run: |
+          docker manifest create \
+            git.postfmly.com/admin/nfld-frontend:latest \
+            git.postfmly.com/admin/nfld-frontend:amd64 \
+            git.postfmly.com/admin/nfld-frontend:arm64
+
+      - name: Push frontend manifest
+        run: docker manifest push git.postfmly.com/admin/nfld-frontend:latest
+
+      - name: Create backend manifest
+        run: |
+          docker manifest create \
+            git.postfmly.com/admin/nfld-backend:latest \
+            git.postfmly.com/admin/nfld-backend:amd64 \
+            git.postfmly.com/admin/nfld-backend:arm64
+
+      - name: Push backend manifest
+        run: docker manifest push git.postfmly.com/admin/nfld-backend:latest
