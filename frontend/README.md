@@ -1,7 +1,27 @@
-# NFLd frontend flowchart
+# <img src="./public/nfld.png" title="NFLd" alt="NFLd logo" width="64" height="64"> NFLd (Frontend)
+
+> - Choose an NFL team, year, and season schedule
+> - Full NFL schedule information will be displayed
+
+---
+
+### 🏗️ <u>Architecture</u> <!-- markdownlint-disable-line MD001 -->
+
+#### Docker Compose Flow
 
 ```mermaid
-flowchart
+flowchart LR
+ui@{shape: rounded, label: "UI"}
+uiPort@{shape: rounded, label: "http://localhost:88"}
+ui-->uiPort
+```
+
+---
+
+#### React Component Hierarchy
+
+```mermaid
+flowchart TD
 index(index.html)
 main(src/main.tsx)
 dashboard(src/components/dashboard/index.tsx)
@@ -17,137 +37,81 @@ port@{shape: comment, label: "&nbsp; Nginx exposes port 80"}
 
 ---
 
-## Node.js stuff
+### 🛠️ Environment Management
 
-### To select/delete version:
+#### Node.js ([n](https://github.com/tj/n "n") manager)
 
-```bash
-sudo n
-```
+|     📋 Task      |     🔧 Command     |
+| :--------------: | :----------------: |
+| Manage Versions  |      `sudo n`      |
+| Install Specific | `sudo n [version]` |
 
-### To install version:
+#### NPM ([pnpm](https://github.com/pnpm/pnpm "pnpm") manager)
 
-```bash
-sudo n [version]
-```
+|   📋 Task    |          🔧 Command           |
+| :----------: | :---------------------------: |
+|    Enable    |    `corepack enable pnpm`     |
+|     Use      |  `corepack use pnpm@latest`   |
+| Use Specific | `corepack use pnpm@[version]` |
+|    Update    |         `corepack up`         |
+
+### 📦 Dependency Management
+
+#### Installation & Removal
+
+|        📋 Task         |               🔧 Command (Full)                |        🔧 Command (Short)         |
+| :--------------------: | :--------------------------------------------: | :-------------------------------: |
+|      Install All       |                 `pnpm install`                 |             `pnpm i`              |
+|   Install Prod Only    |             `pnpm install --prod`              |            `pnpm i -P`            |
+|     Add dependency     |   `pnpm add --save-prod [package][@version]`   |  `pnpm add [package][@version]`   |
+|   Add devDependency    |   `pnpm add --save-dev [package][@version]`    | `pnpm add -D [package][@version]` |
+| Add optionalDependency | `pnpm add --save-optional [package][@version]` | `pnpm add -O [package][@version]` |
+|   Add peerDependency   |   `pnpm add --save-peer [package][@version]`   |              &mdash;              |
+|       Add Global       |    `pnpm add --global [package][@version]`     | `pnpm add -g [package][@version]` |
+|   Remove Dependency    |            `pnpm remove [package]`             |        `pnpm rm [package]`        |
+
+#### Maintenance & Quality
+
+|     📋 Task     |    🔧 Command (Full)    | 🔧 Command (Short)  |
+| :-------------: | :---------------------: | :-----------------: |
+|  Check Updates  |     `pnpm outdated`     |       &mdash;       |
+|   Update All    |      `pnpm update`      |      `pnpm up`      |
+| Update Specific | `pnpm update [package]` | `pnpm up [package]` |
+| Security Audit  |      `pnpm audit`       |       &mdash;       |
+|   Run Script    |   `pnpm run [script]`   |   `pnpm [script]`   |
+|      List       |       `pnpm list`       |      `pnpm ls`      |
+|   List Extra    |   `pnpm list --long`    |      `pnpm ll`      |
+|    Hierarchy    |  `pnpm why [package]`   |       &mdash;       |
+
+### 🧪 Development
+
+#### Scripts
+
+|       📜 Script        |       🔧 Command       |
+| :--------------------: | :--------------------: |
+|        Lint All        |    `pnpm run lint`     |
+|        Lint CSS        |  `pnpm run lint:css`   |
+|       Run ESLint       | `pnpm run lint:eslint` |
+|       Lint HTML        |  `pnpm run lint:html`  |
+|     Lint Markdown      |   `pnpm run lint:md`   |
+|      Run Prettier      | `pnpm run lint:pretty` |
+| Run Tests (Hot Reload) |  `pnpm run test:dev`   |
+|     Run Tests (CI)     |    `pnpm run test`     |
+|       Build Dev        |  `pnpm run build:dev`  |
+|       Build Prod       |    `pnpm run build`    |
+
+#### Docker Deployment
+
+|   📋 Task   |  🔧 Command   |
+| :---------: | :-----------: |
+|    Full     | `./build.sh`  |
+| Docker Only | `./docker.sh` |
 
 ---
 
-## NPM stuff
+### 🛰️ Git & CI/CD
 
-### To enable PNPM:
-
-```bash
-corepack enable pnpm
-```
-
-### To update PNPM:
-
-```bash
-corepack up
-# or
-corepack use pnpm@latest
-# or
-corepack use pnpm@[version]
-```
-
-### To add dependency:
-
-```bash
-# devDependencies:
-pnpm add -D [package][@version]
-# or
-pnpm add --save-dev [package][@version]
-
-# depenencies:
-pnpm add [package][@version]
-# or
-pnpm add --save-prod [package][@version]
-
-# optionalDependencies:
-pnpm add -O [package][@version]
-# or
-pnpm add --save-optional [package][@version]
-
-# peerDependencies & devDependencies:
-pnpm add --save-peer [package][@version]
-
-# global:
-pnpm add -g [package][@version]
-# or
-pnpm add --global [package][@version]
-```
-
-### To uninstall dependency:
-
-```bash
-pnpm rm [package]
-# or
-pnpm remove [package]
-```
-
-### To install dependencies:
-
-```bash
-# DEV:
-pnpm i
-# or
-pnpm install
-
-# PROD:
-pnpm i -P
-# or
-pnpm install --prod
-```
-
-### To check for outdated dependencies:
-
-```bash
-pnpm outdated
-```
-
-### To update dependencies:
-
-```bash
-pnpm up
-# or
-pnpm update
-```
-
-### To audit dependencies:
-
-```bash
-pnpm audit
-```
-
-### To manually lint files:
-
-```bash
-pnpm run lint # runs eslint & prettier
-# or
-pnpm run lint:eslint
-# or
-pnpm run lint:prettier
-```
-
-### To manually build files:
-
-```bash
-pnpm run build:dev # DEV
-# or
-pnpm run build # PROD
-```
-
-### To run tests:
-
-```bash
-pnpm run test:dev # hot reloads
-# or
-pnpm run test # not interactive
-```
-
-### To run `package.json` script:
-
-```bash
-pnpm run [script]
-```
+- **Pre-Commit:** Staged files are automatically linted and tested
+- **Github Actions:** Automatically builds and pushes multi-arch images to repository
+  - amd64
+  - arm64

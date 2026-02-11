@@ -1,17 +1,17 @@
-# <img src="./frontend/public/nfld.png" alt="NFLd logo" title="NFLd" width="64" height="64"> NFLd
+# <img src="./frontend/public/nfld.png" title="NFLd" alt="NFLd logo" width="64" height="64"> NFLd
 
-- Choose an NFL team, year, and season schedule
-- Full NFL schedule information will be displayed
+> - Choose an NFL team, year, and season schedule
+> - Full NFL schedule information will be displayed
 
 ---
 
-## Compose flowchart
+#### Docker Compose Flow:
 
 ```mermaid
 flowchart LR
-frontend@{shape: rounded, label: "frontend"}
+frontend@{shape: rounded, label: "nfld-frontend:80"}
 frontendPort@{shape: rounded, label: "http://localhost:88"}
-backend@{shape: rounded, label: "backend (direct)"}
+backend@{shape: rounded, label: "nfld-backend:5555"}
 backendPort@{shape: rounded, label: "http://localhost:5555"}
 frontend-->frontendPort
 backend-->backendPort
@@ -19,41 +19,15 @@ backend-->backendPort
 
 ---
 
-## Development stuff
-
-### Backend:
+#### To build all images:
 
 ```bash
-python3 -m venv .venv
-source .venv/bin/activate
-cd backend
-pip-compile --extra dev
-pip-sync
-python3 api.py &
-deactivate
-```
-
-### Frontend:
-
-```bash
-cd frontend
-pnpm i
-pnpm run build:dev
+./build.sh
 ```
 
 ---
 
-## Docker stuff
+### Additional documentation available:
 
-### To build images:
-
-```bash
-# All
-./build.sh
-
-# Backend
-cd backend && ./build.sh
-
-# Frontend
-cd frontend && ./build.sh
-```
+- [Frontend](./backend/README.md "Frontend")
+- [Backend](./frontend/README.md "Backend")
