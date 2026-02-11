@@ -106,12 +106,12 @@ jobs:
       - name: Build and push frontend
         run: |
           cd frontend
-          docker buildx build --platform linux/amd64 --tag git.postfmly.com/admin/nfld-frontend:amd64 --push .
+          docker buildx build --platform linux/arm64 --tag git.postfmly.com/admin/nfld-frontend:arm64 --push .
 
       - name: Build and push backend
         run: |
           cd backend
-          docker buildx build --platform linux/amd64 --tag git.postfmly.com/admin/nfld-backend:amd64 --push .
+          docker buildx build --platform linux/arm64 --tag git.postfmly.com/admin/nfld-backend:arm64 --push .
 
   manifest:
     needs: [amd64, arm64]
