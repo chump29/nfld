@@ -13,12 +13,14 @@ env:
 jobs:
   check-frontend:
     runs-on: amd64
-    defaults:
-      run:
-        working-directory: ./frontend
     steps:
       - name: Check out repository
         uses: actions/checkout@v6
+
+      - run: |
+          pwd
+          cd frontend
+          ls
 
       - name: Install Node.js
         uses: actions/setup-node@v6
@@ -39,14 +41,14 @@ jobs:
 
   check-backend:
     runs-on: amd64
-    defaults:
-      run:
-        working-directory: ./backend
     steps:
       - name: Check out repository
         uses: actions/checkout@v6
 
-      - run: cd backend
+      - run: |
+          pwd
+          cd backend
+          ls
 
       - name: Install Python
         uses: actions/setup-python@v6
