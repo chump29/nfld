@@ -1,6 +1,6 @@
 {
-  "[css][dockercompose][javacript][javascriptreact][json][html][markdown][typescript][typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "[css][dockercompose][javacript][javascriptreact][json][typescript][typescriptreact]": {
+    "editor.defaultFormatter": "biomejs.biome"
   },
   "[dockerfile]": {
     "editor.defaultFormatter": "ms-azuretools.vscode-containers"
@@ -8,8 +8,14 @@
   "[github-actions-workflow][yaml]": {
     "editor.defaultFormatter": "redhat.vscode-yaml"
   },
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "darkriszty.markdown-table-prettify"
+  },
   "[nginx]": {
-    "editor.defaultFormatter": "raynigon.nginx-formatter"
+    "editor.defaultFormatter": "ahmadalli.vscode-nginx-conf"
   },
   "[python]": {
     "editor.defaultFormatter": "ms-python.black-formatter"
@@ -26,9 +32,13 @@
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
   "editor.tabSize": 2,
+  "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
   "git.autofetch": true,
+  "json.schemaDownload.trustedDomains": {
+    "https://biomejs.dev/schemas/2.4.0/schema.json": true
+  },
   "python.analysis.typeCheckingMode": "basic",
   "python.defaultInterpreterPath": "${workspaceFolder}/backend/.venv/bin/python",
-  "python.terminal.activateEnvironment": true
+  "python.terminal.activateEnvironment": true,
 }

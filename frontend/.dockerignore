@@ -1,13 +1,9 @@
-.dockerignore
 .htmlignore
-.lintstagedrc
-.markdownlintignore
-.prettier*
 .stylelint*
 *.md
 *.sh
+biome.json
 dist/
-eslint.config.ts
 node_modules/
 tsconfig*
 

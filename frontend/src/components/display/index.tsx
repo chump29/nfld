@@ -1,6 +1,6 @@
-import { useEffect, useState, type JSX } from "react"
+import { type JSX, useEffect, useState } from "react"
 
-import axios, { AxiosError, type AxiosResponse } from "axios"
+import axios, { type AxiosError, type AxiosResponse } from "axios"
 
 import { type ITeamDTO } from "../../helpers/interfaces"
 import { schedules } from "../../helpers/schedules"
@@ -12,11 +12,11 @@ import "./index.css"
 
 export interface ISchedule {
   date: string
-  week: string
+  id: string
+  status: string
   teams: ITeamDTO[]
   venue: string
-  status: string
-  id: string
+  week: string
 }
 
 const days: string[] = [
@@ -69,26 +69,26 @@ export default function Display({
         setNoData(!response.data.length)
         const schedule: ISchedule[] = []
         let week = 0
-        /* eslint-disable  @typescript-eslint/no-explicit-any */
+        // biome-ignore lint/suspicious/noExplicitAny: multiple types
         response.data.forEach((d: any) => {
           if (++week !== d.week.number && seasonSelected === 2) {
             schedule.push({
               date: "",
-              week: `${seasonSelected === 2 ? "Round" : "Week"} ${week++}`,
+              id: `${d.id}.1`,
+              status: "",
               teams: [],
               venue: "",
-              status: "",
-              id: `${d.id}.1`
+              week: `${seasonSelected === 2 ? "Round" : "Week"} ${week++}`
             })
           }
           const teams = [] as ITeamDTO[]
-          /* eslint-disable  @typescript-eslint/no-explicit-any */
+          // biome-ignore lint/suspicious/noExplicitAny: multiple types
           d.competitions[0].competitors.forEach((c: any) => {
             teams.push({
-              record: c.record ? c.record[0].displayValue : "TBD",
-              score: c.score ? c.score.displayValue : "TBD",
+              logo: c.team.logos[3].href,
               name: c.team.displayName,
-              logo: c.team.logos[3].href
+              record: c.record ? c.record[0].displayValue : "TBD",
+              score: c.score ? c.score.displayValue : "TBD"
             })
           })
           const date = new Date(d.date)
@@ -106,17 +106,17 @@ export default function Display({
           const competitions = d.competitions[0]
           schedule.push({
             date: `${dow}, ${month} ${day}${getOrdinal(day)} @ ${time} ${tz}`,
-            week: d.week.text,
+            id: d.id,
+            status: competitions.status.type.shortDetail.includes("Final")
+              ? competitions.status.type.shortDetail
+              : competitions.status.type.description,
             teams: teams,
             venue:
               competitions.venue.fullName +
               (competitions.notes.length > 0
                 ? " - " + competitions.notes[0].headline
                 : ""),
-            status: competitions.status.type.shortDetail.includes("Final")
-              ? competitions.status.type.shortDetail
-              : competitions.status.type.description,
-            id: d.id
+            week: d.week.text
           } as ISchedule)
         })
         setSchedule(schedule)
@@ -142,7 +142,7 @@ export default function Display({
               </div>
             ) : null}
             {schedule.map((data: ISchedule) => (
-              <div key={data.id} className="card">
+              <div className="card" key={data.id}>
                 <div className="card-body">
                   <div className="row row-list">
                     {!data.teams.length ? <Bye /> : <Week data={data} />}

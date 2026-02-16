@@ -31,10 +31,10 @@ jobs:
           package_json_file: ./frontend/package.json
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --frozen-lockfile --prefer-offline --ignore-scripts
 
       - name: Linting
-        run: pnpm run lint
+        run: pnpm run lint:ci
 
       - name: Testing
         run: pnpm run test

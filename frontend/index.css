@@ -9,9 +9,9 @@ div#logo {
 
 div#d {
   position: absolute;
+  margin: 14px 57px;
   font-size: 36px;
   transform: rotate(30deg);
-  margin: 14px 57px;
 }
 
 .blue {

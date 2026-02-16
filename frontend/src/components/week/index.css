@@ -23,12 +23,12 @@ img {
 }
 
 .score {
-  text-wrap: nowrap;
   font-size: 4vmin;
   font-weight: bolder;
+  text-wrap: nowrap;
 }
 
 .team {
-  font-weight: bold;
   font-size: calc(50% + 1vw);
+  font-weight: bold;
 }

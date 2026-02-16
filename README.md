@@ -5,7 +5,7 @@
 
 ---
 
-#### Docker Compose Flow:
+### Docker Compose Flow: <!-- markdownlint-disable-line MD001 -->
 
 ```mermaid
 flowchart LR
@@ -19,7 +19,7 @@ backend-->backendPort
 
 ---
 
-#### To build all images:
+### To build all images:
 
 ```bash
 ./build.sh

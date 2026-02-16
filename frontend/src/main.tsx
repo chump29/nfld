@@ -1,13 +1,13 @@
 import { StrictMode } from "react"
-import { createRoot } from "react-dom/client"
 
 import axios, { AxiosError, type AxiosResponse } from "axios"
+import { createRoot } from "react-dom/client"
 
 import Dashboard from "./components/dashboard"
 
 import "bootstrap/dist/css/bootstrap.min.css"
 
-const api_url = import.meta.env.VITE_API_URL || ""
+const api_url: string = import.meta.env.VITE_API_URL || ""
 
 const getVersion = (version: string): string => {
   return version.length ? `v${version}` : "N/A"
@@ -17,7 +17,7 @@ document.getElementById("frontend")!.innerText = getVersion(
   import.meta.env.PACKAGE_VERSION
 )
 
-const obj = document.getElementById("backend")
+const obj: HTMLElement | null = document.getElementById("backend")
 axios
   .get(api_url + "/api/version", { timeout: 3000 })
   .then((response: AxiosResponse) => {

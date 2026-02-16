@@ -7,12 +7,12 @@ export default defineConfig({
   plugins: [
     react(),
     simpleHtml({
+      minify: true,
       inject: {
         data: {
           title: "NFLd"
         }
-      },
-      minify: true
+      }
     }),
     version()
   ],

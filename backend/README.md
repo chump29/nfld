@@ -5,7 +5,7 @@
 
 ---
 
-### 🏗️ <u>Architecture</u> <!-- markdownlint-disable-line MD001 -->
+### 🏗️ Architecture <!-- markdownlint-disable-line MD001 -->
 
 #### API Structure:
 

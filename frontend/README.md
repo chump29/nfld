@@ -5,7 +5,7 @@
 
 ---
 
-### 🏗️ <u>Architecture</u> <!-- markdownlint-disable-line MD001 -->
+### 🏗️ Architecture <!-- markdownlint-disable-line MD001 -->
 
 #### Docker Compose Flow
 
@@ -42,14 +42,14 @@ port@{shape: comment, label: "&nbsp; Nginx exposes port 80"}
 #### Node.js ([n](https://github.com/tj/n "n") manager)
 
 |     📋 Task      |     🔧 Command     |
-| :--------------: | :----------------: |
+|:----------------:|:------------------:|
 | Manage Versions  |      `sudo n`      |
 | Install Specific | `sudo n [version]` |
 
 #### NPM ([pnpm](https://github.com/pnpm/pnpm "pnpm") manager)
 
 |   📋 Task    |          🔧 Command           |
-| :----------: | :---------------------------: |
+|:------------:|:-----------------------------:|
 |    Enable    |    `corepack enable pnpm`     |
 |     Use      |  `corepack use pnpm@latest`   |
 | Use Specific | `corepack use pnpm@[version]` |
@@ -60,9 +60,9 @@ port@{shape: comment, label: "&nbsp; Nginx exposes port 80"}
 #### Installation & Removal
 
 |        📋 Task         |               🔧 Command (Full)                |        🔧 Command (Short)         |
-| :--------------------: | :--------------------------------------------: | :-------------------------------: |
-|      Install All       |                 `pnpm install`                 |             `pnpm i`              |
-|   Install Prod Only    |             `pnpm install --prod`              |            `pnpm i -P`            |
+|:----------------------:|:----------------------------------------------:|:---------------------------------:|
+|      Install DEV       |                 `pnpm install`                 |             `pnpm i`              |
+|      Install PROD      |             `pnpm install --prod`              |            `pnpm i -P`            |
 |     Add dependency     |   `pnpm add --save-prod [package][@version]`   |  `pnpm add [package][@version]`   |
 |   Add devDependency    |   `pnpm add --save-dev [package][@version]`    | `pnpm add -D [package][@version]` |
 | Add optionalDependency | `pnpm add --save-optional [package][@version]` | `pnpm add -O [package][@version]` |
@@ -73,7 +73,7 @@ port@{shape: comment, label: "&nbsp; Nginx exposes port 80"}
 #### Maintenance & Quality
 
 |     📋 Task     |    🔧 Command (Full)    | 🔧 Command (Short)  |
-| :-------------: | :---------------------: | :-----------------: |
+|:---------------:|:-----------------------:|:-------------------:|
 |  Check Updates  |     `pnpm outdated`     |       &mdash;       |
 |   Update All    |      `pnpm update`      |      `pnpm up`      |
 | Update Specific | `pnpm update [package]` | `pnpm up [package]` |
@@ -88,22 +88,22 @@ port@{shape: comment, label: "&nbsp; Nginx exposes port 80"}
 #### Scripts
 
 |       📜 Script        |       🔧 Command       |
-| :--------------------: | :--------------------: |
-|        Lint All        |    `pnpm run lint`     |
+|:----------------------:|:----------------------:|
+|     Lint All (DEV)     |    `pnpm run lint`     |
+|     Lint All (CI)      |   `pnpm run lint:ci`   |
+|       Lint Biome       | `pnpm run lint:biome`  |
 |        Lint CSS        |  `pnpm run lint:css`   |
-|       Run ESLint       | `pnpm run lint:eslint` |
 |       Lint HTML        |  `pnpm run lint:html`  |
 |     Lint Markdown      |   `pnpm run lint:md`   |
-|      Run Prettier      | `pnpm run lint:pretty` |
 | Run Tests (Hot Reload) |  `pnpm run test:dev`   |
 |     Run Tests (CI)     |    `pnpm run test`     |
-|       Build Dev        |  `pnpm run build:dev`  |
-|       Build Prod       |    `pnpm run build`    |
+|       Build DEV        |  `pnpm run build:dev`  |
+|       Build PROD       |    `pnpm run build`    |
 
 #### Docker Deployment
 
 |   📋 Task   |  🔧 Command   |
-| :---------: | :-----------: |
+|:-----------:|:-------------:|
 |    Full     | `./build.sh`  |
 | Docker Only | `./docker.sh` |
 
@@ -112,6 +112,7 @@ port@{shape: comment, label: "&nbsp; Nginx exposes port 80"}
 ### 🛰️ Git & CI/CD
 
 - **Pre-Commit:** Staged files are automatically linted and tested
-- **Github Actions:** Automatically builds and pushes multi-arch images to repository
-  - amd64
-  - arm64
+- **Github Actions:** Lints, tests, builds, and pushes multi-architecture images to repository
+  - latest
+    - amd64
+    - arm64

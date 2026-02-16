@@ -1,12 +1,12 @@
 export interface ITeam {
-  id: string
   abbreviation: string
   displayName: string
+  id: string
 }
 
 export interface ITeamDTO {
+  logo: string
+  name: string
   record: string
   score: string
-  name: string
-  logo: string
 }

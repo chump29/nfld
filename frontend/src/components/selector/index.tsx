@@ -1,7 +1,7 @@
-import { useEffect, useState, type ChangeEvent, type JSX } from "react"
-import Form from "react-bootstrap/Form"
+import { type ChangeEvent, type JSX, useEffect, useState } from "react"
 
-import axios, { AxiosError, type AxiosResponse } from "axios"
+import axios, { type AxiosError, type AxiosResponse } from "axios"
+import Form from "react-bootstrap/Form"
 
 import { type ITeam } from "../../helpers/interfaces"
 import { schedules } from "../../helpers/schedules"
@@ -43,18 +43,19 @@ export default function Selector(): JSX.Element {
     e.target.blur()
   }
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: render for all
   useEffect(() => {
     axios
       .get(api_url + "/api/teams")
       .then((response: AxiosResponse) => {
         const teams: ITeam[] = []
-        /* eslint-disable  @typescript-eslint/no-explicit-any */
+        // biome-ignore lint/suspicious/noExplicitAny: multiple types
         response.data.forEach((d: any) => {
           if (d.team.isActive) {
             teams.push({
-              id: d.team.id,
               abbreviation: d.team.abbreviation,
-              displayName: d.team.displayName
+              displayName: d.team.displayName,
+              id: d.team.id
             } as ITeam)
           }
         })
@@ -78,10 +79,11 @@ export default function Selector(): JSX.Element {
             NFL Team
           </Form.Label>
           <Form.Select
+            onChange={handleTeamChange}
             size="lg"
             value={teamSelected}
-            onChange={handleTeamChange}>
-            <option key="0" className="first-option" value="0">
+          >
+            <option className="first-option" key="0" value="0">
               Choose a team...
             </option>
             {teamList.map((data: ITeam) => (
@@ -94,10 +96,11 @@ export default function Selector(): JSX.Element {
         <Form.Group className="mb-3">
           <Form.Label className="fs-5 fw-bold">Year</Form.Label>
           <Form.Select
+            onChange={handleYearChange}
             size="lg"
             value={yearSelected}
-            onChange={handleYearChange}>
-            <option key="0" className="first-option" value="0">
+          >
+            <option className="first-option" key="0" value="0">
               Choose a year...
             </option>
             {yearList.map((year: number) => (
@@ -110,14 +113,15 @@ export default function Selector(): JSX.Element {
         <Form.Group className="mb-3">
           <Form.Label className="fs-5 fw-bold">Schedule</Form.Label>
           <Form.Select
+            onChange={handleSeasonChange}
             size="lg"
             value={seasonSelected}
-            onChange={handleSeasonChange}>
-            <option key="-1" className="first-option" value="-1">
+          >
+            <option className="first-option" key="-1" value="-1">
               Choose a schedule...
             </option>
             {schedules.map((schedule: string, i: number) => (
-              <option key={i} value={i}>
+              <option key={schedule} value={i}>
                 {schedule}
               </option>
             ))}
