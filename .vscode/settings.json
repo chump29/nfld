@@ -35,9 +35,6 @@
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
   "git.autofetch": true,
-  "json.schemaDownload.trustedDomains": {
-    "https://biomejs.dev/schemas/2.4.0/schema.json": true
-  },
   "python.analysis.typeCheckingMode": "basic",
   "python.defaultInterpreterPath": "${workspaceFolder}/backend/.venv/bin/python",
   "python.terminal.activateEnvironment": true,

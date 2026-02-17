@@ -22,8 +22,8 @@
     "clean": "rimraf dist node_modules",
     "lint": "pnpm run lint:biome && pnpm run lint:html && pnpm run lint:css && pnpm run lint:md",
     "lint:biome": "biome check --write --verbose",
-    "lint:ci": "biome ci --verbose --reporter=default --reporter=github && pnpm run lint:html && stylelint **/*.css --formatter verbose --ignore-path .gitignore && markdownlint-cli2 **/*.md",
-    "lint:css": "stylelint **/*.css --fix --formatter verbose --ignore-path .gitignore",
+    "lint:ci": "biome ci --verbose --reporter=default --reporter=github && pnpm run lint:html && stylelint **/*.css --formatter verbose --ignore-path ../.gitignore && markdownlint-cli2 **/*.md",
+    "lint:css": "stylelint **/*.css --fix --formatter verbose --ignore-path ../.gitignore",
     "lint:html": "html-validator --exclude=dist --ignore-config=.htmlignore",
     "lint:md": "markdownlint-cli2 --fix ../**/**/*.md",
     "nolyfill": "nolyfill install",
@@ -72,7 +72,7 @@
     "react-dom": "^19.2.4"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.4.0",
+    "@biomejs/biome": "^2.4.2",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@types/node": "^25.2.3",
