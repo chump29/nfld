@@ -28,7 +28,7 @@ port@{shape: comment, label: "&nbsp; FastAPI exposes port 5555"}
 #### Python ([uv](https://github.com/astral-sh/uv "uv") manager):
 
 |        📋 Task         |           🔧 Command            |
-| :--------------------: | :-----------------------------: |
+|:----------------------:|:-------------------------------:|
 |         Update         |        `uv self update`         |
 |        Install         |  `uv python install [version]`  |
 |       Uninstall        | `uv python uninstall [version]` |
@@ -43,16 +43,16 @@ port@{shape: comment, label: "&nbsp; FastAPI exposes port 5555"}
 #### Installation & Removal:
 
 |        📋 Task        |               🔧 Command               |
-| :-------------------: | :------------------------------------: |
+|:---------------------:|:--------------------------------------:|
 |    Add Dependency     |           `uv add [package]`           |
 |  Add env Dependency   |  `uv add --optional [env] [package]`   |
-|   Remove Dependency   |         `uv remove -[package]`         |
+|   Remove Dependency   |         `uv remove [package]`          |
 | Remove env Dependency | `uv remove --optional [env] [package]` |
 
 #### Maintenance & Quality:
 
 |     📋 Task      |               🔧 Command               |
-| :--------------: | :------------------------------------: |
+|:----------------:|:--------------------------------------:|
 |  Check Updates   |          `uv run pip-review`           |
 |   Upgrade All    |          `uv lock --upgrade`           |
 |       List       |             `uv pip list`              |
@@ -66,28 +66,28 @@ port@{shape: comment, label: "&nbsp; FastAPI exposes port 5555"}
 #### Scripts:
 
 | 📜 Script |       🔧 Command       |
-| :-------: | :--------------------: |
+|:---------:|:----------------------:|
 |   Lint    | `uv run pylint api.py` |
 |   Test    | `uv run behave --stop` |
 
 #### API Deployment:
 
 | 📋 Task |            🔧 Command (Full)            | 🔧 Command (Short) |
-| :-----: | :-------------------------------------: | :----------------: |
+|:-------:|:---------------------------------------:|:------------------:|
 |   DEV   | `uv run fastapi dev api.py --port 5555` |     `./api.py`     |
 |  PROD   | `uv run fastapi run api.py --port 5555` |      &mdash;       |
 
 #### Docker Deployment:
 
 |   📋 Task   |  🔧 Command   |
-| :---------: | :-----------: |
+|:-----------:|:-------------:|
 |    Full     | `./build.sh`  |
 | Docker Only | `./docker.sh` |
 
 #### Virtual Environment:
 
 |    📜 Script    |         🔧 Command          |
-| :-------------: | :-------------------------: |
+|:---------------:|:---------------------------:|
 |     Create      |          `uv venv`          |
 | Create Specific |   `uv venv -p [version]`    |
 |    Activate     | `source .venv/bin/activate` |
