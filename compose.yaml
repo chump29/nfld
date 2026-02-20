@@ -1,7 +1,7 @@
 services:
   nfld-frontend:
     container_name: nfld-frontend
-    image: git.postfmly.com/admin/nfld-frontend
+    image: git.postfmly.com/admin/nfld-frontend:arm64
     restart: unless-stopped
     depends_on:
       - nfld-backend
@@ -26,7 +26,7 @@ services:
 
   nfld-backend:
     container_name: nfld-backend
-    image: git.postfmly.com/admin/nfld-backend
+    image: git.postfmly.com/admin/nfld-backend:arm64
     restart: unless-stopped
     ports:
       - "5555:5555"

@@ -7,7 +7,7 @@
 
 ### 🏗️ Architecture <!-- markdownlint-disable-line MD001 -->
 
-#### Docker Compose Flow
+#### Docker Compose Flow:
 
 ```mermaid
 flowchart LR
@@ -18,7 +18,7 @@ ui-->uiPort
 
 ---
 
-#### React Component Hierarchy
+#### React Component Hierarchy:
 
 ```mermaid
 flowchart TD
@@ -39,14 +39,14 @@ port@{shape: comment, label: "&nbsp; Nginx exposes port 80"}
 
 ### 🛠️ Environment Management
 
-#### Node.js ([n](https://github.com/tj/n "n") manager)
+#### Node.js ([n](https://github.com/tj/n "n") manager):
 
 |     📋 Task      |     🔧 Command     |
 |:----------------:|:------------------:|
 | Manage Versions  |      `sudo n`      |
 | Install Specific | `sudo n [version]` |
 
-#### NPM ([pnpm](https://github.com/pnpm/pnpm "pnpm") manager)
+#### NPM ([pnpm](https://github.com/pnpm/pnpm "pnpm") manager):
 
 |   📋 Task    |          🔧 Command           |
 |:------------:|:-----------------------------:|
@@ -57,7 +57,7 @@ port@{shape: comment, label: "&nbsp; Nginx exposes port 80"}
 
 ### 📦 Dependency Management
 
-#### Installation & Removal
+#### Installation & Removal:
 
 |        📋 Task         |               🔧 Command (Full)                |        🔧 Command (Short)         |
 |:----------------------:|:----------------------------------------------:|:---------------------------------:|
@@ -70,7 +70,7 @@ port@{shape: comment, label: "&nbsp; Nginx exposes port 80"}
 |       Add Global       |    `pnpm add --global [package][@version]`     | `pnpm add -g [package][@version]` |
 |   Remove Dependency    |            `pnpm remove [package]`             |        `pnpm rm [package]`        |
 
-#### Maintenance & Quality
+#### Maintenance & Quality:
 
 |     📋 Task     |    🔧 Command (Full)    | 🔧 Command (Short)  |
 |:---------------:|:-----------------------:|:-------------------:|
@@ -85,7 +85,7 @@ port@{shape: comment, label: "&nbsp; Nginx exposes port 80"}
 
 ### 🧪 Development
 
-#### Scripts
+#### Scripts:
 
 |       📜 Script        |      🔧 Command       |
 |:----------------------:|:---------------------:|
@@ -99,7 +99,7 @@ port@{shape: comment, label: "&nbsp; Nginx exposes port 80"}
 |       Build DEV        | `pnpm run build:dev`  |
 |       Build PROD       |   `pnpm run build`    |
 
-#### Docker Deployment
+#### Docker Deployment:
 
 |   📋 Task   |  🔧 Command   |
 |:-----------:|:-------------:|

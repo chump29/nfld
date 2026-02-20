@@ -214,7 +214,8 @@
       "correctness": {
         "noChildrenProp": "error",
         "noUnusedVariables": "error",
-        "useJsxKeyInIterable": "error"
+        "useJsxKeyInIterable": "error",
+        "useUniqueElementIds": "off"
       },
       "nursery": {
         "useExplicitType": "error"
@@ -282,7 +283,7 @@
             "useYield": "error"
           },
           "style": {
-            "noInferrableTypes": "error",
+            "noInferrableTypes": "off",
             "useImportType": {
               "level": "error",
               "options": { "style": "inlineType" }
