@@ -87,18 +87,17 @@ port@{shape: comment, label: "&nbsp; Nginx exposes port 80"}
 
 #### Scripts
 
-|       📜 Script        |       🔧 Command       |
-|:----------------------:|:----------------------:|
-|     Lint All (DEV)     |    `pnpm run lint`     |
-|     Lint All (CI)      |   `pnpm run lint:ci`   |
-|       Lint Biome       | `pnpm run lint:biome`  |
-|        Lint CSS        |  `pnpm run lint:css`   |
-|       Lint HTML        |  `pnpm run lint:html`  |
-|     Lint Markdown      |   `pnpm run lint:md`   |
-| Run Tests (Hot Reload) |  `pnpm run test:dev`   |
-|     Run Tests (CI)     |    `pnpm run test`     |
-|       Build DEV        |  `pnpm run build:dev`  |
-|       Build PROD       |    `pnpm run build`    |
+|       📜 Script        |      🔧 Command       |
+|:----------------------:|:---------------------:|
+|     Lint All (DEV)     |    `pnpm run lint`    |
+|     Lint All (CI)      |  `pnpm run lint:ci`   |
+|       Lint Biome       | `pnpm run lint:biome` |
+|        Lint CSS        |  `pnpm run lint:css`  |
+|       Lint HTML        | `pnpm run lint:html`  |
+| Run Tests (Hot Reload) |  `pnpm run test:dev`  |
+|     Run Tests (CI)     |    `pnpm run test`    |
+|       Build DEV        | `pnpm run build:dev`  |
+|       Build PROD       |   `pnpm run build`    |
 
 #### Docker Deployment
 
